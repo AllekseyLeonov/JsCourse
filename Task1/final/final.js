@@ -30,7 +30,7 @@ function filter(array, condition){
 }
 
 function reduce(array, func, value = 0){
-  let acc = value
+  let accumulator = value
   if(typeof func != "function"){
     console.log("Error:'reduce' function second argument was not a function")
   }
@@ -39,10 +39,10 @@ function reduce(array, func, value = 0){
   }
   else {
     for (let i = 0; i < array.length; i++) {
-      acc = func(acc, array[i])
+      accumulator = func(accumulator, array[i])
     }
   }
-  return acc
+  return accumulator
 }
 
 const notes = [
