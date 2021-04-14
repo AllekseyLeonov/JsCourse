@@ -1,11 +1,16 @@
-function reduce(arr, func, value = 0){
-  let acc = value
-  for(let i = 0; i < arr.length; i++){
-    acc = func(acc, arr[i])
+function reduce(array, func, value = 0){
+  let accumulator = value
+  try{
+    for (let i = 0; i < array.length; i++){
+      accumulator = func(accumulator, array[i])
+    }
+  } catch(e){
+    console.log(e.message)
   }
-  return acc
+  return accumulator
 }
 
-let arr = [1,2,3,4]
+const arr = [1,2,3,4]
 console.log(arr)
-console.log(reduce(arr, (a,b) => a + b))
+console.log(reduce(arr, 3))
+console.log(reduce(arr, (num1,num2) => num1 + num2))

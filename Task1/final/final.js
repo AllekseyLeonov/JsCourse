@@ -1,27 +1,39 @@
-function map(arr, func){
-  let newArr = []
-  for(let i = 0; i < arr.length; i++){
-    newArr.push(func(arr[i]))
-  }
-  return newArr
-}
-
-function filter(arr, condition){
-  let newArr = []
-  for(let i = 0; i < arr.length; i++){
-    if(condition(arr[i])){
-      newArr.push(arr[i])
+﻿function map(arr, func){
+  const newArr = []
+  try{
+    for(let i = 0; i < arr.length; i++){
+      newArr.push(func(arr[i]))
     }
+  } catch(e){
+    console.log(e.message)
   }
   return newArr
 }
 
-function reduce(arr, func, value = 0){
-  let acc = value
-  for(let i = 0; i < arr.length; i++){
-    acc = func(acc, arr[i])
+function filter(array, condition){
+  const newArr = []
+  try{
+    for(let i = 0; i < array.length; i++){
+      if(condition(array[i])) {
+        newArr.push(array[i])
+      }
+    }
+  } catch (e) {
+    console.log(e.message)
   }
-  return acc
+  return newArr
+}
+
+function reduce(array, func, value = 0){
+  let accumulator = value
+  try{
+    for (let i = 0; i < array.length; i++){
+      accumulator = func(accumulator, array[i])
+    }
+  } catch(e){
+    console.log(e.message)
+  }
+  return accumulator
 }
 
 const notes = [
@@ -59,6 +71,6 @@ const notes = [
   }
 ]
 
-console.log(map(notes, i => {return {id: i.id, title: i.title} }))
-console.log(filter(notes, i => i.isMarked))
-console.log(reduce(notes, (a,b) => a += b.pagesCount))
+console.log(map(notes, item => {return {id: item.id, title: item.title} }))
+console.log(filter(notes, item => item.isMarked))
+console.log(reduce(notes, (num1,num2) => num1 += num2.pagesCount))

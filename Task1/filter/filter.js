@@ -1,15 +1,18 @@
-function filter(arr, condition){
-  let newArr = []
-  for(let i = 0; i < arr.length; i++){
-    if(condition(arr[i])){
-      newArr.push(arr[i])
+function filter(array, condition){
+  const newArr = []
+  try{
+    for(let i = 0; i < array.length; i++){
+      if(condition(array[i])) {
+        newArr.push(array[i])
+      }
     }
+  } catch (e) {
+    console.log(e.message)
   }
   return newArr
 }
 
-let arr = [1,2,3,4]
+const arr = [1,2,3,4]
 console.log(arr)
-
-arr = filter(arr, i => i>2)
-console.log(arr)
+console.log(filter(arr, item =>  item>2))
+console.log(filter(arr, 3))
