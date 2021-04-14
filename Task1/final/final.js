@@ -1,46 +1,37 @@
 ﻿function map(arr, func){
   const newArr = []
-  if(typeof func != "function"){
-    console.log("Error:'map' function second argument was not a function")
-  }
-  else{
+  try{
     for(let i = 0; i < arr.length; i++){
       newArr.push(func(arr[i]))
     }
+  } catch(e){
+    console.log(e.message)
   }
   return newArr
 }
 
 function filter(array, condition){
   const newArr = []
-  if(typeof condition != "function"){
-    console.log("Error:'filter' function second argument was not a function")
-  }
-  else if(condition.length !== 1){
-    console.log("Error:'filter' function second argument must have one argument")
-  }
-  else {
+  try{
     for(let i = 0; i < array.length; i++){
       if(condition(array[i])) {
         newArr.push(array[i])
       }
     }
+  } catch (e) {
+    console.log(e.message)
   }
   return newArr
 }
 
 function reduce(array, func, value = 0){
   let accumulator = value
-  if(typeof func != "function"){
-    console.log("Error:'reduce' function second argument was not a function")
-  }
-  else if(func.length !== 2){
-    console.log("Error:'reduce' function second argument must have two arguments")
-  }
-  else {
-    for (let i = 0; i < array.length; i++) {
+  try{
+    for (let i = 0; i < array.length; i++){
       accumulator = func(accumulator, array[i])
     }
+  } catch(e){
+    console.log(e.message)
   }
   return accumulator
 }

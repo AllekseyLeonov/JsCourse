@@ -1,12 +1,11 @@
 function map(arr, func){
   const newArr = []
-  if(typeof func != "function"){
-    console.log("Error:'map' function second argument was not a function")
-  }
-  else{
+  try{
     for(let i = 0; i < arr.length; i++){
       newArr.push(func(arr[i]))
     }
+  } catch(e){
+    console.log(e.message)
   }
   return newArr
 }
