@@ -1,10 +1,10 @@
 function reduce(array, func, value = 0){
   let accumulator = value
   if(typeof func != "function"){
-    console.log("Error:'filter' function second argument was not a function")
+    console.log("Error:'reduce' function second argument was not a function")
   }
   else if(func.length !== 2){
-    console.log("Error:'filter' function second argument must have two arguments")
+    console.log("Error:'reduce' function second argument must have two arguments")
   }
   else {
     for (let i = 0; i < array.length; i++) {

@@ -32,10 +32,10 @@ function filter(array, condition){
 function reduce(array, func, value = 0){
   let acc = value
   if(typeof func != "function"){
-    console.log("Error:'filter' function second argument was not a function")
+    console.log("Error:'reduce' function second argument was not a function")
   }
   else if(func.length !== 2){
-    console.log("Error:'filter' function second argument must have two arguments")
+    console.log("Error:'reduce' function second argument must have two arguments")
   }
   else {
     for (let i = 0; i < array.length; i++) {
@@ -80,6 +80,6 @@ const notes = [
   }
 ]
 
-console.log(map(notes, i => {return {id: i.id, title: i.title} }))
-console.log(filter(notes, i => i.isMarked))
-console.log(reduce(notes, (a,b) => a += b.pagesCount))
+console.log(map(notes, item => {return {id: item.id, title: item.title} }))
+console.log(filter(notes, item => item.isMarked))
+console.log(reduce(notes, (num1,num2) => num1 += num2.pagesCount))
