@@ -20,4 +20,4 @@ const arr = [1,2,3,4]
 console.log(arr)
 console.log(filter(arr, item =>  item>2))
 console.log(filter(arr, 3))
-console.log(filter(arr, (item,i) =>  item>2))
+console.log(filter(arr, (item1,item2) =>  item1>2 && item2>2))

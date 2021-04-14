@@ -1,25 +1,46 @@
 ﻿function map(arr, func){
-  let newArr = []
-  for(let i = 0; i < arr.length; i++){
-    newArr.push(func(arr[i]))
+  const newArr = []
+  if(typeof func != "function"){
+    console.log("Error:'map' function second argument was not a function")
   }
-  return newArr
-}
-
-function filter(arr, condition){
-  let newArr = []
-  for(let i = 0; i < arr.length; i++){
-    if(condition(arr[i])){
-      newArr.push(arr[i])
+  else{
+    for(let i = 0; i < arr.length; i++){
+      newArr.push(func(arr[i]))
     }
   }
   return newArr
 }
 
-function reduce(arr, func, value = 0){
+function filter(array, condition){
+  const newArr = []
+  if(typeof condition != "function"){
+    console.log("Error:'filter' function second argument was not a function")
+  }
+  else if(condition.length !== 1){
+    console.log("Error:'filter' function second argument must have one argument")
+  }
+  else {
+    for(let i = 0; i < array.length; i++){
+      if(condition(array[i])) {
+        newArr.push(array[i])
+      }
+    }
+  }
+  return newArr
+}
+
+function reduce(array, func, value = 0){
   let acc = value
-  for(let i = 0; i < arr.length; i++){
-    acc = func(acc, arr[i])
+  if(typeof func != "function"){
+    console.log("Error:'filter' function second argument was not a function")
+  }
+  else if(func.length !== 2){
+    console.log("Error:'filter' function second argument must have two arguments")
+  }
+  else {
+    for (let i = 0; i < array.length; i++) {
+      acc = func(acc, array[i])
+    }
   }
   return acc
 }
