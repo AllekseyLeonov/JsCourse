@@ -10,5 +10,5 @@ function add(op1, op2) {
 const voltron = new Robot('Voltron');
 
 console.log(add(0, 1)); // Human can count to 1
-console.log(add.bind(voltron, 1, 2)()); // Voltron can count to 3
-console.log(add.bind(voltron, 20, 30)()); // Voltron can count to 50
+console.log(add.call(voltron, 1, 2)); // Voltron can count to 3
+console.log(add.apply(voltron, [20, 30])); // Voltron can count to 50
