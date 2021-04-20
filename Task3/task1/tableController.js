@@ -1,4 +1,4 @@
-﻿const downloads = [
+﻿const DOWNLOADS = [
   {
     id: 1,
     title: "Recipe",
@@ -26,47 +26,68 @@
   },
 ];
 
-function fillTableByInitialValues() {
-  const idRow = document.getElementById("idRow");
-  const titleRow = document.getElementById("titleRow");
-  const statusRow = document.getElementById("statusRow");
+const DOWNLOAD_STATUSES = {
+  pending: "Pending",
+  done: "Done",
+  failed: "Failed",
+};
 
-  for (let i = 0; i < downloads.length; i++) {
-    idRow.innerHTML += `<td>${downloads[i].id}</td>`;
-    titleRow.innerHTML += `<td>${downloads[i].title}</td>`;
-    statusRow.innerHTML += `<td>${downloads[i].status}</td>`;
+const ONCLICK_TIMEOUT_DURATION = 3000;
+const PENDING_INTERVAL_DURATION = 5000;
+const STATUS_COLUMN_NUMBER = 2;
+
+const loadDownloadTable = () => {
+  const table = document.getElementById("tableBody");
+
+  for (let i = 0; i < DOWNLOADS.length; i++) {
+    let inner = `<tr>`;
+    inner += `<td>${DOWNLOADS[i].id}</td>`;
+    inner += `<td>${DOWNLOADS[i].title}</td>`;
+    inner += `<td>${DOWNLOADS[i].status}</td>`;
+    inner += `</tr>`;
+    table.innerHTML += inner;
   }
-}
+};
 
-window.onload = () => fillTableByInitialValues();
+window.onload = () => loadDownloadTable();
 
-function findCellByTextContent(row, contentString) {
+const findDownloadByStatus = (table, columnNumber, status) => {
   console.log("Check started");
-  for (let i = 0; i < row.cells.length; i++) {
-    if (row.cells.item(i).innerText === contentString) {
+
+  for (let i = 0; i < table.rows.length; i++) {
+    const currentRow = table.rows.item(i);
+    if (currentRow.cells.item(columnNumber).innerText === status) {
       console.log("Found pending item");
-      return row.cells.item(i);
+      return currentRow.cells.item(columnNumber);
     }
   }
   console.log("No more pending items left");
   return null;
-}
+};
 
-function updateStatusRow() {
-  const statusRow = document.getElementById("statusRow");
+const updateStatusRow = () => {
+  const table = document.getElementById("tableBody");
+  const button = document.getElementById("button");
+  button.disabled = true;
 
   setTimeout(() => {
-    const findPendingCell = () => findCellByTextContent(statusRow, "Pending");
-    let cellToChange = findPendingCell();
+    const findPendingDownload = () =>
+      findDownloadByStatus(
+        table,
+        STATUS_COLUMN_NUMBER,
+        DOWNLOAD_STATUSES.pending
+      );
+    let cellToChange = findPendingDownload();
 
     const timerId = setInterval(() => {
-      if (cellToChange !== null) {
+      if (cellToChange) {
         console.log("Item processed");
-        cellToChange.innerText = "Done";
-        cellToChange = findPendingCell();
+        cellToChange.innerText = DOWNLOAD_STATUSES.done;
+        cellToChange = findPendingDownload();
       } else {
+        button.disabled = false;
         clearInterval(timerId);
       }
-    }, 5000);
-  }, 3000);
-}
+    }, PENDING_INTERVAL_DURATION);
+  }, ONCLICK_TIMEOUT_DURATION);
+};
