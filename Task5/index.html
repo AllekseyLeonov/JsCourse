@@ -2,305 +2,450 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Title</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="scripts/sliderController.js"></script>
+    <script src="scripts/menuController.js"></script>
   </head>
   <body>
-    <header class="header">
-      <div class="header__title title">
-        <h1 class="title__text">sitename</h1>
-        <hr class="title__line" />
-      </div>
+    <div class="page-content">
+      <a id="home_link"></a>
+      <button onClick="onMobileMenuButtonClick()" class="burger-button">
+        <img
+          class="burger-button-image"
+          src="images/burger-button.png"
+          alt="burger-button"
+        />
+      </button>
+      <header class="header">
+        <div class="title">
+          <h1 class="title__text">sitename</h1>
+          <img class="title__line" src="images/line.png" alt="title-line" />
+        </div>
+      </header>
       <nav class="menu">
-        <h2 class="menu__item">home</h2>
-        <h2 class="menu__item">about</h2>
-        <h2 class="menu__item">services</h2>
-        <h2 class="menu__item">projects</h2>
-        <h2 class="menu__item">contact</h2>
+        <div class="menu__body">
+          <h2 class="menu__item">
+            <button
+              onClick="onMenuButtonClick('home_link')"
+              id="menu__home"
+              class="menu__item__button"
+            >
+              home
+            </button>
+          </h2>
+          <h2 class="menu__item">
+            <button
+              onClick="onMenuButtonClick('about_link')"
+              id="menu__about"
+              class="menu__item__button"
+            >
+              about
+            </button>
+          </h2>
+          <h2 class="menu__item">
+            <button
+              onClick="onMenuButtonClick('services_link')"
+              id="menu__services"
+              class="menu__item__button"
+            >
+              services
+            </button>
+          </h2>
+          <h2 class="menu__item">
+            <button
+              onClick="onMenuButtonClick('projects_link')"
+              id="menu__projects"
+              class="menu__item__button"
+            >
+              projects
+            </button>
+          </h2>
+          <h2 class="menu__item">
+            <button
+              onClick="onMenuButtonClick('contact_link')"
+              id="menu__contact"
+              class="menu__item__button"
+            >
+              contact
+            </button>
+          </h2>
+        </div>
       </nav>
       <div class="slider">
-        <div class="slider__image-body">
-          <img
-            class="slider__image slider__image1"
-            src="images/slider.png"
-            alt="slider1"
-          />
-          <img
-            class="slider__image slider__image1"
-            src="images/slider.png"
-            alt="slider1"
-          />
-        </div>
-        <div class="slider__control-body">
-          <button class="slider__button slider__button__left">
-            <img src="images/left-arrow.png" alt="left-arrow" />
-          </button>
-          <h2 class="slider__headline">ipsum dolor sit amet lat</h2>
-          <p class="slider__subheadline">Aliquam tincidunt mauris eu risus</p>
-          <button class="slider__button slider__button__right">
-            <img src="images/right-arrow.png" alt="right-arrow" />
-          </button>
-        </div>
-      </div>
-    </header>
-    <section class="row1">
-      <section class="block1">
-        <h2 class="block1__headline">
-          Morbi in sem lorem placerat ornare Pellente
-        </h2>
-        <p class="block1__subheadline">
-          Euismod in, pharetra ultricies<br />
-          Crasconsequat vavimus sup sompurkoi varsit
-        </p>
-        <button class="block1__button">More info</button>
-      </section>
-      <section class="block2">
-        <div class="block2__headline">
-          Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a
-          ullamcorper laoreet, lectus arcu pulvinar risus lorem ipsum dolor
-        </div>
-        <div class="block2__description">
-          vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh
-          felis, adipiscing varius, adipiscing in, lacinia vel, tellus.
-          Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Suspendisse
-          mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi
-          ullamcorper vehicula. Integeralesuada.
-        </div>
-      </section>
-    </section>
-    <section class="row2">
-      <section class="row2__item row2-item">
-        <div class="row2-item__circle-image">
-          <img src="images/row2-cir.png" alt="cir" />
-          <img src="images/row2-item1.png" alt="row2-item1" />
-        </div>
-        <div class="row2-item__headline">Cestibulum auct</div>
-        <div class="row2-item__line"></div>
-        <div class="row2-item__description">
-          Praesent dapibus, neque id cursus faucibus, tortor neque egestas
-          augue, euin vulputate magna eros lipsum
-        </div>
-        <div class="row2__item-button">More</div>
-      </section>
-      <section class="row2__item row2-item">
-        <div class="row2-item__circle-image">
-          <img src="images/row2-cir.png" alt="cir" />
-          <img src="images/row2-item2.png" alt="row2-item2" />
-        </div>
-        <div class="row2-item__headline">Vetae facillis</div>
-        <div class="row2-item__line"></div>
-        <div class="row2-item__description">
-          Craesent dapibus, neque id cursus faucibus, tortor neque egestas
-          augue, euin vulputate magna eros lipsum
-        </div>
-        <div class="row2__item-button">More</div>
-      </section>
-      <section class="row2__item row2-item">
-        <div class="row2-item__circle-image">
-          <img src="images/row2-cir.png" alt="cir" />
-          <img src="images/row2-item3.png" alt="row2-item3" />
-        </div>
-        <div class="row2-item__headline">Integre fusce</div>
-        <div class="row2-item__line"></div>
-        <div class="row2-item__description">
-          Jraesent dapibus, neque id cursus faucibus, tortor neque egestas
-          augue, euin vulputate magna eros lipsum
-        </div>
-        <div class="row2__item-button">More</div>
-      </section>
-    </section>
-    <div class="row3">
-      <h2 class="row3__headline"></h2>
-      <p class="row3__subheadline"></p>
-      <label class="row3__input-form input-form">
-        <input class="input-form__input" value="cresent sbsum ..." />
-        <button class="input-form__button">egeste</button>
-      </label>
-    </div>
-    <div class="row4">
-      <div class="tab">
-        <div class="tab__buttons-container">
-          <p>
-            <button class="tab__button">
-              <img
-                class="tab__button-image"
-                src="images/row4-1.png"
-                alt="row4-1"
-              />
-              Sed egest asteet
-            </button>
-          </p>
-          <p>
-            <button class="tab__button">
-              <img
-                class="tab__button-image"
-                src="images/row4-2.png"
-                alt="row4-2"
-              />
-              Morbi interdum
-            </button>
-          </p>
-          <p>
-            <button class="tab__button">
-              <img
-                class="tab__button-image"
-                src="images/row4-3.png"
-                alt="row4-3"
-              />
-              Morbi interdum
-            </button>
-          </p>
-        </div>
-        <div class="tabs__content-container">
-          <div class="tab__content">
+        <div class="slider__body">
+          <div class="slider__image-body">
             <img
-              class="tab__image"
-              src="images/row4-content1.png"
-              alt="row4-content1"
+              id="slider__image"
+              class="slider__image"
+              src="images/slider.png"
+              alt="slider1"
             />
-            <p class="tab__description">
-              Sed egestas, ante et vulputate volutpat, eros pede semper est,
-              vitae luctus metus libero eu augue. Morbi purus libero, faucibus
-              adipiscing, commodo quis Gravida id, est. Sed lectus. Praesent
-              elementum hendrerit tortor. Sed semper lorem at felis lorem ipsum
-              dolor.
-            </p>
           </div>
-          <div class="tab__content">
-            <img
-              class="tab__image"
-              src="images/row4-content2.png"
-              alt="row4-content2"
-            />
-            <p class="tab__description">
-              Lorem egestas, ante et vulputate volutpat, eros pede semper est,
-              vitae luctus metus libero eu augue. Morbi purus libero, faucibus
-              adipiscing, commodo quis Gravida id, est. Sed lectus. Praesent
-              elementum hendrerit tortor. Sed semper lorem at felis lorem ipsum
-              dolor.
-            </p>
+          <div class="slider__control-body">
+            <button
+              class="slider__button slider__button__left"
+              onclick="onSliderButtonClicked(false)"
+            >
+              <img src="images/left-arrow.png" alt="left-arrow" />
+            </button>
+            <div class="slider__infotext">
+              <h2 id="slider__headline" class="slider__headline">
+                ipsum dolor sit amet lat
+              </h2>
+              <p id="slider__subheadline" class="slider__subheadline">
+                Aliquam tincidunt mauris eu risus
+              </p>
+            </div>
+            <button
+              class="slider__button slider__button__right"
+              onclick="onSliderButtonClicked(true)"
+            >
+              <img src="images/right-arrow.png" alt="right-arrow" />
+            </button>
           </div>
         </div>
       </div>
-    </div>
-    <section class="footer">
-      <section class="blog-posts-section">
-        <h2 class="blog-posts-section__headline">Blog posts</h2>
-        <hr class="blog-posts-section__line" />
-        <section class="blog-posts-section__post blog-post">
-          <img
-            class="blog-post__image"
-            src="images/blog-1.png"
-            alt="blog-post1"
-          />
-          <p class="blog-post__date">Aug / 27 / 2013</p>
-          <p class="blog-post__blog-name">Cohn Doe</p>
-          <p class="blog-post__text">
-            Praesent dapibus, neque id cursus faucibus, tortor ...
-          </p>
-        </section>
-        <hr class="blog-posts-section__line" />
-        <section class="blog-posts-section__post blog-post">
-          <img
-            class="blog-post__image"
-            src="images/blog-2.png"
-            alt="blog-post2"
-          />
-          <p class="blog-post__date">Aug / 27 / 2013</p>
-          <p class="blog-post__blog-name">Cohn Doe</p>
-          <p class="blog-post__text">
-            Praesent dapibus, neque id cursus faucibus, tortor ...
-          </p>
-        </section>
-        <hr class="blog-posts-section__line" />
-        <section class="blog-posts-section__post blog-post">
-          <img
-            class="blog-post__image"
-            src="images/blog-2.png"
-            alt="blog-post2"
-          />
-          <p class="blog-post__date">Aug / 27 / 2013</p>
-          <p class="blog-post__blog-name">Cohn Doe</p>
-          <p class="blog-post__text">
-            Praesent dapibus, neque id cursus faucibus, tortor ...
-          </p>
-        </section>
-      </section>
-      <section class="twitter-posts-section">
-        <h2 class="twitter-posts-section__headline">Twitter posts</h2>
-        <hr class="twitter-posts-section__line" />
-        <section class="twitter-posts-section__post twitter-post">
-          <img
-            class="twitter-post__image"
-            src="images/twitter.png"
-            alt="twitter"
-          />
-          <p class="twitter-post__username">@rafimit</p>
-          <p class="twitter-post__text">
-            Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
-          </p>
-        </section>
-        <section class="twitter-posts-section__post twitter-post">
-          <img
-            class="twitter-post__image"
-            src="images/twitter.png"
-            alt="twitter"
-          />
-          <p class="twitter-post__username">@johndoe</p>
-          <p class="twitter-post__text">
-            Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
-          </p>
-        </section>
-        <section class="twitter-posts-section__post twitter-post">
-          <img
-            class="twitter-post__image"
-            src="images/twitter.png"
-            alt="twitter"
-          />
-          <p class="twitter-post__username">@amanda</p>
-          <p class="twitter-post__text">
-            Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
-          </p>
-        </section>
-        <section class="twitter-posts-section__post twitter-post">
-          <img
-            class="twitter-post__image"
-            src="images/twitter.png"
-            alt="twitter"
-          />
-          <p class="twitter-post__username">@peter</p>
-          <p class="twitter-post__text">
-            Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
-          </p>
-        </section>
-      </section>
-      <section class="quick-contacts-section">
-        <h2 class="quick-contacts-section__headline">Quick contct</h2>
-        <hr class="quick-contacts-section__line" />
-        <img
-          class="quick-contacts-section__image"
-          src="images/map.png"
-          alt="map"
-        />
-        <div class="quick-contacts-section__address">
-          <p class="quick-contacts-section__address-word">Address</p>
-          <p class="quick-contacts-section__address-text">
-            Building name, some street name, some city name, country
-          </p>
+      <a id="about_link"></a>
+      <section class="row1">
+        <div class="row1__body">
+          <section class="row1__block1 block1">
+            <h2 class="block1__headline">
+              Morbi in sem lorem <br />
+              placerat ornare Pellente
+            </h2>
+            <p class="block1__subheadline">
+              Euismod in, pharetra ultricies<br />
+              Crasconsequat vavimus sup <br />sompurkoi varsit
+            </p>
+            <button onClick="window.location.reload();" class="block1__button">
+              More info
+            </button>
+          </section>
+          <section class="row1__block2 block2">
+            <div class="block2__headline">
+              Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia,
+              magna a ullamcorper laoreet, lectus arcu pulvinar risus lorem
+              ipsum dolor
+            </div>
+            <div class="block2__description">
+              vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh
+              felis, adipiscing varius, adipiscing in, lacinia vel, tellus.
+              Suspendisse ac urna. Etiam pellentesque mauris ut lectus.
+              <br /><br />
+              Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a
+              diam sit amet mi ullamcorper vehicula. Integeralesuada.
+            </div>
+          </section>
         </div>
-        <p class="quick-contacts-section__contacts">
-          info@sitename.com / (000) 888 888 8888
+      </section>
+      <a id="services_link"></a>
+      <section class="row2">
+        <div class="row2__body">
+          <section class="row2__item row2-item">
+            <img
+              class="row2-item__circle-image"
+              src="images/row2-item1.png"
+              alt="row2-item1"
+            />
+            <div class="row2-item__textinfo">
+              <div class="row2-item__headline">Cestibulum auct</div>
+              <img class="row2-item__line" src="images/line.png" alt="line" />
+              <div class="row2-item__description">
+                Praesent dapibus, neque id cursus faucibus, tortor neque egestas
+                augue, euin vulputate magna eros lipsum
+              </div>
+              <button
+                onClick="window.location.reload();"
+                class="row2__item-button"
+              >
+                More
+              </button>
+            </div>
+          </section>
+          <section class="row2__item row2-item">
+            <img
+              class="row2-item__circle-image"
+              src="images/row2-item2.png"
+              alt="row2-item2"
+            />
+            <div class="row2-item__textinfo">
+              <div class="row2-item__headline">Vetae facillis</div>
+              <img class="row2-item__line" src="images/line.png" alt="line" />
+              <div class="row2-item__description">
+                Craesent dapibus, neque id cursus faucibus, tortor neque egestas
+                augue, euin vulputate magna eros lipsum
+              </div>
+              <button
+                onClick="window.location.reload();"
+                class="row2__item-button"
+              >
+                More
+              </button>
+            </div>
+          </section>
+          <section class="row2__item row2-item">
+            <img
+              class="row2-item__circle-image"
+              src="images/row2-item3.png"
+              alt="row2-item3"
+            />
+            <div class="row2-item__textinfo">
+              <div class="row2-item__headline">integre fusce</div>
+              <img class="row2-item__line" src="images/line.png" alt="line" />
+              <div class="row2-item__description">
+                Jraesent dapibus, neque id cursus faucibus, tortor neque egestas
+                augue, euin vulputate magna eros lipsum
+              </div>
+              <button
+                onClick="window.location.reload();"
+                class="row2__item-button"
+              >
+                More
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
+      <section class="row3">
+        <h2 class="row3__headline">Morbi in sem lorem placerat</h2>
+        <p class="row3__subheadline">
+          euismod in pharetra ultricies Crasconsequat vavimus sup
         </p>
+        <label class="row3__input-form input-form">
+          <input class="input-form__input" value="cresent sbsum ..." />
+          <button
+            onClick="window.location.reload();"
+            class="input-form__button"
+          >
+            egeste
+          </button>
+        </label>
+      </section>
+      <a id="projects_link"></a>
+      <div class="row4">
+        <div class="row4__tab tab">
+          <div class="tab__buttons-container">
+            <p class="tab__button-text">
+              <button onClick="window.location.reload();" class="tab__button">
+                <img
+                  class="tab__button-image"
+                  src="images/row4-1.png"
+                  alt="row4-1"
+                />
+                Sed egest asteet
+              </button>
+            </p>
+            <p class="tab__button-text">
+              <button onClick="window.location.reload();" class="tab__button">
+                <img
+                  class="tab__button-image"
+                  src="images/row4-2.png"
+                  alt="row4-2"
+                />
+                Morbi interdum
+              </button>
+            </p>
+            <p class="tab__button-text">
+              <button onClick="window.location.reload();" class="tab__button">
+                <img
+                  class="tab__button-image"
+                  src="images/row4-3.png"
+                  alt="row4-3"
+                />
+                Morbi interdum
+              </button>
+            </p>
+          </div>
+          <div class="tabs__content-container">
+            <div class="tab__content">
+              <img
+                class="tab__image"
+                src="images/row4-content1.png"
+                alt="row4-content1"
+              />
+              <p class="tab__description">
+                Sed egestas, ante et vulputate volutpat, eros pede semper est,
+                vitae luctus metus libero eu augue. Morbi purus libero, faucibus
+                adipiscing, commodo quis Gravida id, est. Sed lectus. Praesent
+                elementum hendrerit tortor. Sed semper lorem at felis lorem
+                ipsum dolor.
+              </p>
+            </div>
+            <div class="tab__content">
+              <img
+                class="tab__image"
+                src="images/row4-content2.png"
+                alt="row4-content2"
+              />
+              <p class="tab__description">
+                Lorem egestas, ante et vulputate volutpat, eros pede semper est,
+                vitae luctus metus libero eu augue. Morbi purus libero, faucibus
+                adipiscing, commodo quis Gravida id, est. Sed lectus. Praesent
+                elementum hendrerit tortor. Sed semper lorem at felis lorem
+                ipsum dolor.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a id="contact_link"></a>
+      <section class="footer">
+        <div class="footer__body">
+          <section class="blog-posts-section">
+            <h2 class="blog-posts-section__headline">Blog posts</h2>
+            <img
+              class="blog-posts-section__line"
+              src="images/line.png"
+              alt="line"
+            />
+            <section class="blog-posts-section__post blog-post">
+              <img
+                class="blog-post__image"
+                src="images/blog-1.png"
+                alt="blog-post1"
+              />
+              <div class="blog-post__info">
+                <p class="blog-post__date">Aug / 27 / 2013</p>
+                <p class="blog-post__blog-name">Cohn Doe</p>
+                <p class="blog-post__text">
+                  Praesent dapibus, neque id cursus faucibus, tortor ...
+                </p>
+              </div>
+            </section>
+            <img
+              class="blog-posts-section__line"
+              src="images/line.png"
+              alt="line"
+            />
+            <section class="blog-posts-section__post blog-post">
+              <img
+                class="blog-post__image"
+                src="images/blog-2.png"
+                alt="blog-post2"
+              />
+              <div class="blog-post__info">
+                <p class="blog-post__date">Aug / 27 / 2013</p>
+                <p class="blog-post__blog-name">Cohn Doe</p>
+                <p class="blog-post__text">
+                  Praesent dapibus, neque id cursus faucibus, tortor ...
+                </p>
+              </div>
+            </section>
+            <img
+              class="blog-posts-section__line"
+              src="images/line.png"
+              alt="line"
+            />
+            <section class="blog-posts-section__post blog-post">
+              <img
+                class="blog-post__image"
+                src="images/blog-3.png"
+                alt="blog-post2"
+              />
+              <div class="blog-post__info">
+                <p class="blog-post__date">Aug / 27 / 2013</p>
+                <p class="blog-post__blog-name">Cohn Doe</p>
+                <p class="blog-post__text">
+                  Praesent dapibus, neque id cursus faucibus, tortor ...
+                </p>
+              </div>
+            </section>
+          </section>
+          <section class="twitter-posts-section">
+            <h2 class="twitter-posts-section__headline">Twitter posts</h2>
+            <img
+              class="twitter-posts-section__line"
+              src="images/line.png"
+              alt="line"
+            />
+            <section class="twitter-posts-section__post twitter-post">
+              <img
+                class="twitter-post__image"
+                src="images/twitter.png"
+                alt="twitter"
+              />
+              <div class="twitter-post__info">
+                <p class="twitter-post__username">@rafimit</p>
+                <p class="twitter-post__text">
+                  Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
+                </p>
+              </div>
+            </section>
+            <section class="twitter-posts-section__post twitter-post">
+              <img
+                class="twitter-post__image"
+                src="images/twitter.png"
+                alt="twitter"
+              />
+              <div class="twitter-post__info">
+                <p class="twitter-post__username">@johndoe</p>
+                <p class="twitter-post__text">
+                  Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
+                </p>
+              </div>
+            </section>
+            <section class="twitter-posts-section__post twitter-post">
+              <img
+                class="twitter-post__image"
+                src="images/twitter.png"
+                alt="twitter"
+              />
+              <div class="twitter-post__info">
+                <p class="twitter-post__username">@amanda</p>
+                <p class="twitter-post__text">
+                  Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
+                </p>
+              </div>
+            </section>
+            <section class="twitter-posts-section__post twitter-post">
+              <img
+                class="twitter-post__image"
+                src="images/twitter.png"
+                alt="twitter"
+              />
+              <div class="twitter-post__info">
+                <p class="twitter-post__username">@peter</p>
+                <p class="twitter-post__text">
+                  Morbi interdum mollis sapien sed ac risus. Phasellus lacinia
+                </p>
+              </div>
+            </section>
+          </section>
+          <section class="quick-contacts-section">
+            <h2 class="quick-contacts-section__headline">Quick contct</h2>
+            <img
+              class="quick-contacts-section__line"
+              src="images/line.png"
+              alt="line"
+            />
+            <img
+              class="quick-contacts-section__image"
+              src="images/map.png"
+              alt="map"
+            />
+            <div class="quick-contacts-section__address">
+              <p class="quick-contacts-section__address-word">Address</p>
+              <p class="quick-contacts-section__address-text">
+                Building name, some street name, some city name, country
+              </p>
+            </div>
+            <p class="quick-contacts-section__contacts">
+              info@sitename.com / (000) 888 888 8888
+            </p>
+          </section>
+        </div>
       </section>
       <footer class="copyrights">
-        <p class="copyrights__website-name">Copyright(c) website name.</p>
-        <p class="copyrights__designed-by">
-          Designed by: www.alltemplateneeds.com
-        </p>
-        <p class="copyrights__images-from">
+        <p class="copyrights__text">
+          Copyright(c) website name.
+          <span class="copyrights__designed-by">
+            Designed by: www.alltemplateneeds.com
+          </span>
           / Images from: http://wallpaperswide.com/ www.photorack.net
         </p>
       </footer>
-    </section>
+    </div>
   </body>
 </html>
