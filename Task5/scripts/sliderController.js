@@ -49,8 +49,8 @@ const changeOpacity = (opacityFrom, opasityTo, step) => {
         changeOpacityByTime();
         resolve();
       } else {
-        for (let objectToChange of objectsToChange) {
-          objectToChange.style.opacity = opacity;
+        for (let htmlElement of objectsToChange) {
+          htmlElement.style.opacity = opacity;
         }
       }
     }, ANIMATION_STEP);

@@ -19,12 +19,13 @@
 
 body {
   margin: 0 auto;
-  padding: 0 0 0 0;
+  padding: 0;
   background-image: url("../images/background.png");
 }
 
 button {
   cursor: pointer;
+  outline-style: none;
 }
 
 button:hover {
@@ -48,7 +49,7 @@ button:hover {
 }
 
 .burger-button {
-  visibility: hidden;
+  display: none;
   z-index: 30;
   padding-right: 10px;
   position: sticky;
@@ -113,7 +114,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0 0 0;
+  margin: 0;
   height: 40px;
   color: rgb(113, 106, 114);
 }
@@ -142,7 +143,7 @@ button:hover {
   flex-flow: column;
 }
 
-.slider__image-body{
+.slider__image-body {
   display: flex;
 }
 
@@ -178,7 +179,7 @@ button:hover {
   letter-spacing: 3px;
   color: rgb(255, 255, 255);
   text-transform: uppercase;
-  margin: 0 0 0 0;
+  margin: 0;
   padding-top: 30px;
   align-self: center;
 }
@@ -209,7 +210,7 @@ button:hover {
 }
 
 .row1__block1 {
-  width: 47.87%;
+  width: 48%;
   align-self: flex-start;
 }
 
@@ -218,7 +219,7 @@ button:hover {
 }
 
 .block1__headline {
-  margin: 0 0 0 0;
+  margin: 0;
   font-size: 30px;
   letter-spacing: 1px;
   font-family: "Source Sans Pro Black", serif;
@@ -250,13 +251,13 @@ button:hover {
 }
 
 .row1__block2 {
-  width: 52.127%;
+  width: 52%;
   padding-left: 30px;
   align-self: flex-start;
 }
 
 .block2__headline {
-  margin: 0 0 0 0;
+  margin: 0;
   padding-top: 2px;
   letter-spacing: 1px;
   font-size: 19px;
@@ -280,7 +281,7 @@ button:hover {
 .row2 {
   background-color: rgb(250, 250, 250);
   display: flex;
-  box-shadow: 0px 1px 4px 0px rgba(82, 84, 77, 0.16);
+  box-shadow: 0 1px 4px 0 rgba(82, 84, 77, 0.16);
   width: 100%;
   justify-content: center;
 }
@@ -294,7 +295,7 @@ button:hover {
 }
 
 .row2__item {
-  width: 31.49%;
+  width: 31%;
   display: flex;
 }
 
@@ -354,12 +355,13 @@ button:hover {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  padding: 50px 0 77px 0;
   background-color: rgb(241, 196, 15);
 }
 
 .row3__headline {
   padding-top: 50px;
-  margin: 0 0 0 0;
+  margin: 0;
   text-align: center;
   font-size: 30px;
   font-family: "Source Sans Pro Black", serif;
@@ -370,7 +372,7 @@ button:hover {
 
 .row3__subheadline {
   text-align: center;
-  margin: 0 0 0 0;
+  margin: 0;
   font-size: 24px;
   font-family: "Source Sans Pro Light", serif;
   letter-spacing: 1px;
@@ -380,12 +382,11 @@ button:hover {
 
 .row3__input-form {
   padding-top: 20px;
-  padding-bottom: 77px;
   display: flex;
 }
 
 .input-form__input {
-  margin: 0 0 0 0;
+  margin: 0;
   padding-left: 20px;
   height: 35px;
   width: 230px;
@@ -401,8 +402,8 @@ button:hover {
 }
 
 .input-form__button {
-  margin: 0 0 0 0;
-  padding: 0 0 0 0;
+  margin: 0;
+  padding: 0;
   font-size: 16px;
   font-family: "Source Sans Pro Black", serif;
   color: rgb(255, 255, 255);
@@ -430,14 +431,14 @@ button:hover {
 }
 
 .tab__buttons-container {
-  margin: 0 0 0 0;
+  margin: 0;
   display: flex;
   justify-content: space-between;
   width: 71%;
 }
 
 .tab__button {
-  margin: 0 0 0 0;
+  margin: 0;
   width: 96.428%;
   height: 60px;
   letter-spacing: 2px;
@@ -455,8 +456,8 @@ button:hover {
 }
 
 .tab__button-text {
-  margin: 0 0 0 0;
-  width: 32.53%;
+  margin: 0;
+  width: 32%;
 }
 
 .tabs__content-container {
@@ -466,12 +467,12 @@ button:hover {
   width: 100%;
   align-self: center;
   justify-content: space-between;
-  margin: 0 0 0 0;
+  margin: 0;
 }
 
 .tab__content {
   padding: 20px 30px 13px;
-  width: 44.5%;
+  width: 44%;
 }
 
 .tab__image {
@@ -536,7 +537,7 @@ button:hover {
 }
 
 .blog-post__blog-name {
-  margin: 0 0 0 0;
+  margin: 0;
   width: 100%;
   font-size: 15px;
   font-family: "Source Sans Pro Black", serif;
@@ -546,7 +547,7 @@ button:hover {
 }
 
 .blog-post__date {
-  margin: 0 0 0 0;
+  margin: 0;
   padding-top: 22px;
   width: 100%;
   font-size: 12px;
@@ -556,7 +557,7 @@ button:hover {
 }
 
 .blog-post__text {
-  margin: 0 0 0 0;
+  margin: 0;
   padding-top: 10px;
   width: 100%;
   font-size: 15px;
@@ -598,7 +599,7 @@ button:hover {
 }
 
 .twitter-post__username {
-  margin: 0 0 0 0;
+  margin: 0;
   font-size: 15px;
   font-family: "Source Sans Pro Black", serif;
   color: rgb(241, 196, 15);
@@ -606,7 +607,7 @@ button:hover {
 }
 
 .twitter-post__text {
-  margin: 0 0 0 0;
+  margin: 0;
   font-size: 15px;
   font-family: "Source Sans Pro Regular", serif;
   color: rgb(157, 157, 157);
@@ -635,7 +636,7 @@ button:hover {
 }
 
 .quick-contacts-section__address-word {
-  margin: 0 0 0 0;
+  margin: 0;
   padding-top: 25px;
   font-size: 15px;
   font-family: "Source Sans Pro Black", serif;
@@ -645,7 +646,7 @@ button:hover {
 }
 
 .quick-contacts-section__address-text {
-  margin: 0 0 0 0;
+  margin: 0;
   font-family: "Source Sans Pro Regular", serif;
   color: rgb(157, 157, 157);
   line-height: 1.2;
@@ -699,12 +700,12 @@ button:hover {
   }
 
   .slider__button {
-    padding: 0 0 0 0;
+    padding: 0;
   }
 
   .slider__infotext {
     justify-content: center;
-    padding: 0 0 0 0;
+    padding: 0;
   }
 
   .slider__headline {
@@ -762,7 +763,7 @@ button:hover {
 
   .row2-item__circle-image {
     align-self: center;
-    padding: 0 0 0 0;
+    padding: 0;
   }
 
   .row2-item__textinfo {
@@ -795,19 +796,19 @@ button:hover {
 
   .twitter-posts-section {
     width: 70%;
-    padding: 0 0 0 0;
+    padding: 0;
   }
 
-  .twitter-posts-section__headline{
+  .twitter-posts-section__headline {
     text-align: center;
   }
 
   .quick-contacts-section {
     width: 70%;
-    padding: 0 0 0 0;
+    padding: 0;
   }
 
-  .quick-contacts-section__headline{
+  .quick-contacts-section__headline {
     text-align: center;
   }
 }
@@ -880,7 +881,7 @@ button:hover {
   }
 
   .burger-button {
-    visibility: visible;
+    display: flex;
   }
 
   .menu {
@@ -908,7 +909,7 @@ button:hover {
   }
 
   .tab__button {
-    padding: 0 0 0 0;
+    padding: 0;
     width: 100%;
   }
 }
