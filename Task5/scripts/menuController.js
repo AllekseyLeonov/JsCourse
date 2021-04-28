@@ -46,16 +46,16 @@ const updateMenuItems = () => {
     for (let i = 1; i < MENU_ITEMS.length; i++) {
       let currentSectionHeight = 0;
       MENU_ITEMS[i].sections.forEach((element) => {
-        elementTop = document
+        const elementTop = document
           .getElementsByClassName(element)
           .item(0)
           .getBoundingClientRect().top;
-        elementBottom = document
+        const elementBottom = document
           .getElementsByClassName(element)
           .item(0)
           .getBoundingClientRect().bottom;
 
-        elementAbsoluteTop = elementTop + pageYOffset;
+        const elementAbsoluteTop = elementTop + pageYOffset;
 
         if (elementAbsoluteTop < pageYOffset) {
           currentSectionHeight += elementBottom;
@@ -67,7 +67,7 @@ const updateMenuItems = () => {
           }
         }
       });
-      if (currentSectionHeight > screen.height/2) {
+      if (currentSectionHeight > screen.height / 2) {
         setMenuItemActive(i);
       }
     }
