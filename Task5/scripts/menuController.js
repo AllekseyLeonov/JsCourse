@@ -1,18 +1,9 @@
-﻿const getPosition = (targetClassName) => {
-  const bodyPosition = document.body.getBoundingClientRect().y;
-  const targetPosition = document
-    .getElementsByClassName(targetClassName)
-    .item(0)
-    .getBoundingClientRect().y;
-  return bodyPosition - targetPosition;
-};
-
-const MENU_ITEMS = [
-  { id: "menu__home", isActive: false },
-  { id: "menu__about", isActive: false },
-  { id: "menu__services", isActive: false },
-  { id: "menu__projects", isActive: false },
-  { id: "menu__contact", isActive: false },
+﻿const MENU_ITEMS = [
+  { id: "menu__home", isActive: false, sections: ["header"] },
+  { id: "menu__about", isActive: false, sections: ["slider", "row1"] },
+  { id: "menu__services", isActive: false, sections: ["row2", "row3"] },
+  { id: "menu__projects", isActive: false, sections: ["row4"] },
+  { id: "menu__contact", isActive: false, sections: ["footer", "copyrights"] },
 ];
 
 const setMenuItemActive = (index) => {
@@ -30,21 +21,20 @@ const setMenuItemActive = (index) => {
   }
 };
 
-window.onscroll = () => {
+window.onscroll = () => updateMenuItems();
+
+const updateMenuItems = () => {
   const menu = document.getElementsByClassName("menu").item(0);
 
-  const currentMenuPosition =
-    document.body.getBoundingClientRect().y -
-    document.getElementsByClassName("menu").item(0).getBoundingClientRect()
-      .bottom;
-
-  const row1Position = getPosition("row1");
-  const row2Position = getPosition("row2");
-  const row4Position = getPosition("row4");
-  const footerPosition = getPosition("footer");
-  const copyrightsPosition = getPosition("copyrights");
-
-  if (currentMenuPosition >= row1Position) {
+  const currentMenuPosition = document
+    .getElementsByClassName("menu")
+    .item(0)
+    .getBoundingClientRect().bottom;
+  const sliderPosition = document
+    .getElementsByClassName("slider")
+    .item(0)
+    .getBoundingClientRect().top;
+  if (currentMenuPosition <= sliderPosition) {
     if (!window.matchMedia("(max-width: 767px)").matches) {
       menu.style.backgroundColor = "white";
     }
@@ -53,23 +43,33 @@ window.onscroll = () => {
     if (!window.matchMedia("(max-width: 767px)").matches) {
       menu.style.backgroundColor = "rgba(157,157,157,0.9)";
     }
-    if (
-      currentMenuPosition < row1Position &&
-      currentMenuPosition > row2Position
-    ) {
-      setMenuItemActive(1);
-    } else if (
-      currentMenuPosition < row2Position &&
-      currentMenuPosition > row4Position
-    ) {
-      setMenuItemActive(2);
-    } else if (
-      currentMenuPosition < row4Position &&
-      currentMenuPosition > footerPosition
-    ) {
-      setMenuItemActive(3);
-    } else {
-      setMenuItemActive(4);
+    for (let i = 1; i < MENU_ITEMS.length; i++) {
+      let currentSectionHeight = 0;
+      MENU_ITEMS[i].sections.forEach((element) => {
+        const elementTop = document
+          .getElementsByClassName(element)
+          .item(0)
+          .getBoundingClientRect().top;
+        const elementBottom = document
+          .getElementsByClassName(element)
+          .item(0)
+          .getBoundingClientRect().bottom;
+
+        const elementAbsoluteTop = elementTop + pageYOffset;
+
+        if (elementAbsoluteTop < pageYOffset) {
+          currentSectionHeight += elementBottom;
+        } else if (elementTop < screen.height) {
+          if (elementBottom < screen.height) {
+            currentSectionHeight += elementBottom - elementTop;
+          } else {
+            currentSectionHeight += screen.height - elementTop;
+          }
+        }
+      });
+      if (currentSectionHeight > screen.height / 2) {
+        setMenuItemActive(i);
+      }
     }
   }
 };
@@ -84,6 +84,7 @@ const onMenuButtonClick = (address) => {
     menuLabel.style.visibility = "hidden";
     burgerButton.style.visibility = "visible";
   }
+  updateMenuItems();
 };
 
 const onMobileMenuButtonClick = () => {
