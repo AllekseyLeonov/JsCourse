@@ -45,10 +45,14 @@ window.onscroll = () => {
   const copyrightsPosition = getPosition("copyrights");
 
   if (currentMenuPosition >= row1Position) {
-    menu.style.backgroundColor = "white";
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      menu.style.backgroundColor = "white";
+    }
     setMenuItemActive(0);
   } else {
-    menu.style.backgroundColor = "rgba(157,157,157,0.9)";
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      menu.style.backgroundColor = "rgba(157,157,157,0.9)";
+    }
     if (
       currentMenuPosition < row1Position &&
       currentMenuPosition > row2Position
