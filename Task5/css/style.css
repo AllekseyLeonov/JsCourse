@@ -140,6 +140,10 @@ button:hover {
   flex-flow: column;
 }
 
+.slider__image-body{
+  display: flex;
+}
+
 .slider__image {
   width: 100%;
 }
@@ -150,7 +154,7 @@ button:hover {
   justify-content: space-between;
   width: 100%;
   height: 122px;
-  margin-top: -125px;
+  margin-top: -122px;
   background-color: rgba(0, 0, 0, 0.451);
   z-index: 10;
 }
