@@ -80,6 +80,8 @@ button:hover {
 }
 
 .title__text {
+  line-height: 2;
+  border-bottom: 2px solid currentColor;
   align-self: center;
   font-size: 50px;
   text-transform: uppercase;
@@ -310,6 +312,8 @@ button:hover {
 }
 
 .row2-item__headline {
+  line-height: 2;
+  border-bottom: 2px solid currentColor;
   display: flex;
   font-size: 24px;
   font-family: "Source Sans Pro Black", serif;
@@ -317,11 +321,6 @@ button:hover {
   text-transform: uppercase;
   text-align: left;
   letter-spacing: 1px;
-  width: 100%;
-}
-
-.row2-item__line {
-  padding-top: 20px;
   width: 100%;
 }
 
@@ -507,18 +506,19 @@ button:hover {
 }
 
 .blog-posts-section__headline {
+  line-height: 2;
+  border-bottom: 2px solid currentColor;
   margin-bottom: 0;
   font-size: 24px;
   font-family: "Source Sans Pro Black", serif;
   letter-spacing: 1px;
   color: rgb(255, 255, 255);
   text-transform: uppercase;
-  line-height: 1.2;
 }
 
 .blog-posts-section__line {
-  margin-top: 25px;
-  width: 100%;
+  line-height: 2;
+  border-bottom: 2px solid white;
 }
 
 .blog-post {
@@ -578,12 +578,8 @@ button:hover {
   font-family: "Source Sans Pro Black", serif;
   color: rgb(255, 255, 255);
   text-transform: uppercase;
-  line-height: 1.2;
-}
-
-.twitter-posts-section__line {
-  margin-top: 25px;
-  width: 100%;
+  line-height: 2;
+  border-bottom: 2px solid currentColor;
 }
 
 .twitter-post {
@@ -630,12 +626,8 @@ button:hover {
   font-family: "Source Sans Pro Black", serif;
   color: rgb(255, 255, 255);
   text-transform: uppercase;
-  line-height: 1.2;
-}
-
-.quick-contacts-section__line {
-  margin-top: 25px;
-  width: 100%;
+  line-height: 2;
+  border-bottom: 2px solid currentColor;
 }
 
 .quick-contacts-section__image {
@@ -806,9 +798,17 @@ button:hover {
     padding: 0 0 0 0;
   }
 
+  .twitter-posts-section__headline{
+    text-align: center;
+  }
+
   .quick-contacts-section {
     width: 70%;
     padding: 0 0 0 0;
+  }
+
+  .quick-contacts-section__headline{
+    text-align: center;
   }
 }
 
