@@ -1,18 +1,12 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import PropTypes from "prop-types";
 
-const useStyles = makeStyles({
-  root: {
-    padding: "50px 50px",
-    textAlign: "justify",
-  },
-});
+import Styles from "./styles";
 
-const CurrentNoteField = ({ selectedItem }) => (
+const ActiveNote = ({ selectedItem }) => (
   <Grid
-    className={useStyles().root}
+    className={Styles().root}
     container
     direction="column"
     alignItems="center"
@@ -22,7 +16,7 @@ const CurrentNoteField = ({ selectedItem }) => (
   </Grid>
 );
 
-CurrentNoteField.propTypes = {
+ActiveNote.propTypes = {
   selectedItem: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
@@ -31,8 +25,8 @@ CurrentNoteField.propTypes = {
   }),
 };
 
-CurrentNoteField.defaultProps = {
+ActiveNote.defaultProps = {
   selectedItem: { title: "Select note to display" },
 };
 
-export default CurrentNoteField;
+export default ActiveNote;
