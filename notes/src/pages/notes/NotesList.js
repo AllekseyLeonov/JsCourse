@@ -7,10 +7,13 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-const LENGTH_OF_NOTE_CONTENT_PREVIEW = 20;
+import { getPreviewString } from "../../utils/textFormatUtils";
 
-const NotesGrid = ({ notesArray, selectedIndex, setSelectedIndex }) => {
-  const handleListItemClick = (event, index) => {
+const LENGTH_OF_NOTE_CONTENT_PREVIEW = 20;
+const DEFAULT_NOTE_INDEX = -1;
+
+const NotesList = ({ notesArray, selectedIndex, setSelectedIndex }) => {
+  const handleListItemClick = (index) => {
     setSelectedIndex(index);
   };
   return (
@@ -19,9 +22,7 @@ const NotesGrid = ({ notesArray, selectedIndex, setSelectedIndex }) => {
         <ListItem
           button
           selected={selectedIndex === notesArray.indexOf(item)}
-          onClick={(event) =>
-            handleListItemClick(event, notesArray.indexOf(item))
-          }
+          onClick={() => handleListItemClick(notesArray.indexOf(item))}
         >
           <ListItemIcon>
             <NoteIcon />
@@ -33,10 +34,10 @@ const NotesGrid = ({ notesArray, selectedIndex, setSelectedIndex }) => {
                 <span>{item.date}</span>
               </Grid>
             }
-            secondary={`${item.content.substr(
-              0,
+            secondary={getPreviewString(
+              item.content,
               LENGTH_OF_NOTE_CONTENT_PREVIEW
-            )} ...`}
+            )}
           />
         </ListItem>
       ))}
@@ -44,16 +45,16 @@ const NotesGrid = ({ notesArray, selectedIndex, setSelectedIndex }) => {
   );
 };
 
-NotesGrid.propTypes = {
+NotesList.propTypes = {
   notesArray: PropTypes.arrayOf(PropTypes.object),
   selectedIndex: PropTypes.number,
   setSelectedIndex: PropTypes.func,
 };
 
-NotesGrid.defaultProps = {
+NotesList.defaultProps = {
   notesArray: [],
-  selectedIndex: -1,
+  selectedIndex: DEFAULT_NOTE_INDEX,
   setSelectedIndex() {},
 };
 
-export default NotesGrid;
+export default NotesList;
