@@ -10,7 +10,6 @@ import PropTypes from "prop-types";
 import { getPreviewString } from "../../utils/textFormatUtils";
 
 const LENGTH_OF_NOTE_CONTENT_PREVIEW = 20;
-const DEFAULT_NOTE_INDEX = -1;
 
 const NotesList = ({ notesArray, selectedIndex, setSelectedIndex }) => {
   const handleListItemClick = (index) => {
@@ -21,8 +20,8 @@ const NotesList = ({ notesArray, selectedIndex, setSelectedIndex }) => {
       {notesArray.map((item) => (
         <ListItem
           button
-          selected={selectedIndex === notesArray.indexOf(item)}
-          onClick={() => handleListItemClick(notesArray.indexOf(item))}
+          selected={selectedIndex === item.id}
+          onClick={() => handleListItemClick(item.id)}
         >
           <ListItemIcon>
             <NoteIcon />
@@ -53,7 +52,7 @@ NotesList.propTypes = {
 
 NotesList.defaultProps = {
   notesArray: [],
-  selectedIndex: DEFAULT_NOTE_INDEX,
+  selectedIndex: null,
   setSelectedIndex() {},
 };
 

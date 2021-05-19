@@ -27,7 +27,7 @@ const NOTES = [
     date: "02.05.2020",
   },
   {
-    id: 1,
+    id: 2,
     title: "Использование хука состояния",
     content:
       "useState — это хук." +
@@ -39,7 +39,7 @@ const NOTES = [
     date: "02.05.2020",
   },
   {
-    id: 1,
+    id: 3,
     title: "GitHub Pages",
     content:
       "GitHub Pages are public web pages for users, organizations, and repositories," +
@@ -49,10 +49,9 @@ const NOTES = [
     date: "02.05.2020",
   },
 ];
-const DEFAULT_ITEM_INDEX = -1;
 
 const NotesContainer = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(DEFAULT_ITEM_INDEX);
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
   const changeSelectedIndex = (index) => {
     setSelectedIndex(index);
   };
