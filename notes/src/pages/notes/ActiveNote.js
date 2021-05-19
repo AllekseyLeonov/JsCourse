@@ -2,11 +2,11 @@ import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import Styles from "./styles";
+import styles from "./styles";
 
 const ActiveNote = ({ selectedItem }) => (
   <Grid
-    className={Styles().root}
+    style={styles.activeNote}
     container
     direction="column"
     alignItems="center"

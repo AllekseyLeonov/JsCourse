@@ -1,7 +1,5 @@
-import makeStyles from "@material-ui/core/styles/makeStyles";
-
-const Styles = makeStyles({
-  root: {
+const Styles = {
+  activeNote: {
     padding: "50px 50px",
     textAlign: "justify",
   },
@@ -13,6 +11,6 @@ const Styles = makeStyles({
     borderBottomWidth: "3px",
     borderBottomStyle: "solid",
   },
-});
+};
 
 export default Styles;

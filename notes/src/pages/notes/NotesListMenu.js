@@ -2,18 +2,12 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import Styles from "./styles";
+import styles from "./styles";
 import SearchField from "../../components/SearchField";
 import NotesList from "./NotesList";
 
 const NotesListMenu = ({ notesArray, selectedIndex, changeSelectedIndex }) => (
-  <Grid
-    className={Styles().notesListMenu}
-    container
-    item
-    xs={3}
-    direction="column"
-  >
+  <Grid style={styles.notesListMenu} container item xs={3} direction="column">
     <SearchField />
     <NotesList
       notesArray={notesArray}
