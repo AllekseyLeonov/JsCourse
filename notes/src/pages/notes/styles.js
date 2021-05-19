@@ -11,6 +11,9 @@ const Styles = {
     borderBottomWidth: "3px",
     borderBottomStyle: "solid",
   },
+  dialogInputField: {
+    width: "100%",
+  },
 };
 
 export default Styles;
