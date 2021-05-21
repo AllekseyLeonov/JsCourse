@@ -10,45 +10,68 @@ import PropTypes from "prop-types";
 
 import styles from "./styles";
 
-const ActiveNoteEditingDialog = ({ selectedItem, isOpen, setOpen }) => (
-  <Dialog open={isOpen} fullWidth="true" maxWidth="false">
-    <DialogTitle>Editing note</DialogTitle>
-    <DialogContent>
-      <Grid direction="column">
-        <TextField
-          style={styles.dialogInputField}
-          label="title"
-          defaultValue={selectedItem.title}
-        />
-        <TextField
-          style={styles.dialogInputField}
-          label="content"
-          defaultValue={selectedItem.content}
-          multiline
-        />
-      </Grid>
-    </DialogContent>
-    <DialogActions>
-      <Button onClick={() => setOpen(false)}>Close</Button>
-    </DialogActions>
-  </Dialog>
-);
+const ActiveNoteEditingDialog = ({
+  noteTitle,
+  noteContent,
+  isOpen,
+  setOpen,
+  updateNote,
+}) => {
+  let textFieldTitle = noteTitle;
+  let textFieldContent = noteContent;
+  return (
+    <Dialog open={isOpen} fullWidth="true" maxWidth="false">
+      <DialogTitle>Editing note</DialogTitle>
+      <DialogContent>
+        <Grid direction="column">
+          <TextField
+            style={styles.dialogInputField}
+            label="title"
+            defaultValue={textFieldTitle}
+            onChange={(event) => {
+              textFieldTitle = event.target.value;
+            }}
+          />
+          <TextField
+            style={styles.dialogInputField}
+            label="content"
+            defaultValue={textFieldContent}
+            onChange={(event) => {
+              textFieldContent = event.target.value;
+            }}
+            multiline
+          />
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={() => setOpen(false)}>Close</Button>
+        <Button
+          onClick={() => {
+            updateNote(textFieldTitle, textFieldContent);
+            setOpen(false);
+          }}
+        >
+          Save
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
 
 ActiveNoteEditingDialog.propTypes = {
-  selectedItem: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    date: PropTypes.string,
-  }),
+  noteTitle: PropTypes.string,
+  noteContent: PropTypes.string,
   isOpen: PropTypes.bool,
   setOpen: PropTypes.func,
+  updateNote: PropTypes.func,
 };
 
 ActiveNoteEditingDialog.defaultProps = {
-  selectedItem: { title: "Select note to display" },
+  noteTitle: "",
+  noteContent: "",
   isOpen: false,
   setOpen: () => {},
+  updateNote: () => {},
 };
 
 export default ActiveNoteEditingDialog;
