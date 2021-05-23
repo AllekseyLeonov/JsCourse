@@ -3,27 +3,41 @@ import { Grid, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-import styles from "./styles";
+import "./styles.css";
 import ActiveNoteEditingDialog from "./ActiveNoteEditingDialog";
+
+const ActiveNoteContainer = ({ children }) => (
+  <Grid className="ActiveNote" container item xs={9} wrap="nowrap">
+    {children}
+  </Grid>
+);
 
 const ActiveNote = ({ selectedItem, updateNote }) => {
   const [isDialogOpen, setDialogOpen] = React.useState(false);
+  if (!selectedItem) {
+    return (
+      <ActiveNoteContainer>
+        <Typography variant="h3">Select note to display</Typography>
+      </ActiveNoteContainer>
+    );
+  }
   return (
-    <Grid
-      style={styles.activeNote}
-      container
-      wrap="nowrap"
-      alignItems="flex-start"
-    >
+    <ActiveNoteContainer>
       <Grid container direction="column" alignItems="center">
-        <Typography variant="h3">
-          {selectedItem ? selectedItem.title : "Select note to display"}
+        <Typography className="ActiveNoteTitle" variant="h3">
+          {selectedItem.title}
         </Typography>
-        <Typography variant="h5">
-          {selectedItem ? selectedItem.content : ""}
+        <Typography className="ActiveNoteContent" variant="h5">
+          {selectedItem.content}
         </Typography>
       </Grid>
-      <Button onClick={() => setDialogOpen(true)}> Edit </Button>
+      <Button
+        onClick={() => setDialogOpen(true)}
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
+      >
+        {" "}
+        Edit{" "}
+      </Button>
       <ActiveNoteEditingDialog
         noteTitle={selectedItem.title}
         noteContent={selectedItem.content}
@@ -31,7 +45,7 @@ const ActiveNote = ({ selectedItem, updateNote }) => {
         setOpen={setDialogOpen}
         updateNote={updateNote}
       />
-    </Grid>
+    </ActiveNoteContainer>
   );
 };
 
@@ -46,8 +60,16 @@ ActiveNote.propTypes = {
 };
 
 ActiveNote.defaultProps = {
-  selectedItem: { title: "Select note to display" },
+  selectedItem: null,
   updateNote: () => {},
+};
+
+ActiveNoteContainer.propTypes = {
+  children: PropTypes.element,
+};
+
+ActiveNoteContainer.defaultProps = {
+  children: <div />,
 };
 
 export default ActiveNote;

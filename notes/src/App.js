@@ -3,7 +3,7 @@ import React from "react";
 import NotesContainer from "./pages/notes/NotesContainer";
 
 const App = () => (
-  <div className="App">
+  <div>
     <NotesContainer />
   </div>
 );

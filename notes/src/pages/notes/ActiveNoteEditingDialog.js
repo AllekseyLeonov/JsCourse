@@ -8,7 +8,10 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
 
-import styles from "./styles";
+import "./styles.css";
+
+const TITLE_MAX_LENGTH = 35;
+const CONTENT_MAX_LENGTH = 2000;
 
 const ActiveNoteEditingDialog = ({
   noteTitle,
@@ -19,26 +22,49 @@ const ActiveNoteEditingDialog = ({
 }) => {
   let textFieldTitle = noteTitle;
   let textFieldContent = noteContent;
+  const [isTitleCorrect, setIsTitleCorrect] = React.useState(true);
+  const [isContentCorrect, setIsContentCorrect] = React.useState(true);
   return (
     <Dialog open={isOpen} fullWidth="true" maxWidth="false">
       <DialogTitle>Editing note</DialogTitle>
       <DialogContent>
         <Grid direction="column">
           <TextField
-            style={styles.dialogInputField}
+            id="editTitleField"
+            error={!isTitleCorrect}
+            className="DialogInputField"
             label="title"
             defaultValue={textFieldTitle}
             onChange={(event) => {
               textFieldTitle = event.target.value;
+              setIsTitleCorrect(
+                textFieldTitle.length > 0 &&
+                  textFieldTitle.length < TITLE_MAX_LENGTH
+              );
             }}
+            helperText={
+              isTitleCorrect
+                ? ""
+                : `Title length must be between 1 and ${TITLE_MAX_LENGTH} symbols`
+            }
           />
           <TextField
-            style={styles.dialogInputField}
+            error={!isContentCorrect}
+            className="DialogInputField"
             label="content"
             defaultValue={textFieldContent}
             onChange={(event) => {
               textFieldContent = event.target.value;
+              setIsContentCorrect(
+                textFieldContent.length > 0 &&
+                  textFieldContent.length < CONTENT_MAX_LENGTH
+              );
             }}
+            helperText={
+              isContentCorrect
+                ? ""
+                : `Content length must be between 1 and ${CONTENT_MAX_LENGTH} symbols`
+            }
             multiline
           />
         </Grid>
@@ -46,6 +72,7 @@ const ActiveNoteEditingDialog = ({
       <DialogActions>
         <Button onClick={() => setOpen(false)}>Close</Button>
         <Button
+          disabled={!(isTitleCorrect && isContentCorrect)}
           onClick={() => {
             updateNote(textFieldTitle, textFieldContent);
             setOpen(false);
