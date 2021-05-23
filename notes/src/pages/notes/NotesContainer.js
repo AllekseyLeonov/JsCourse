@@ -5,29 +5,34 @@ import NotesListMenu from "./NotesListMenu";
 import ActiveNote from "./ActiveNote";
 import NOTES from "../../config/constants/NOTES";
 
+const NOTES_ARRAY_KEY = "notesArray";
+
 const NotesContainer = () => {
-  const [notesArray, setNotesArray] = React.useState(NOTES);
+  const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
+  const [notesArray, setNotesArray] = React.useState(
+    loadedNotesAsString ? JSON.parse(loadedNotesAsString) : NOTES
+  );
   const [selectedNote, setSelectedNote] = React.useState({
+    id: -1,
     title: "Select note to display",
     content: "",
   });
-
   const updateNote = (title, content) => {
-    setNotesArray(
-      notesArray.map((item) => {
-        if (item.id === selectedNote.id) {
-          const updatedNote = {
-            id: item.id,
-            title,
-            content,
-            date: item.date,
-          };
-          setSelectedNote(updatedNote);
-          return updatedNote;
-        }
-        return item;
-      })
-    );
+    const updatedArray = notesArray.map((item) => {
+      if (item.id === selectedNote.id) {
+        const updatedNote = {
+          id: item.id,
+          title,
+          content,
+          date: item.date,
+        };
+        setSelectedNote(updatedNote);
+        return updatedNote;
+      }
+      return item;
+    });
+    setNotesArray(updatedArray);
+    localStorage.setItem(NOTES_ARRAY_KEY, JSON.stringify(updatedArray));
   };
 
   return (
@@ -37,12 +42,7 @@ const NotesContainer = () => {
         selectedIndex={selectedNote.id}
         changeSelectedIndex={(index) => setSelectedNote(notesArray[index])}
       />
-      <ActiveNote
-        item
-        xs={3}
-        selectedItem={selectedNote}
-        updateNote={updateNote}
-      />
+      <ActiveNote item selectedItem={selectedNote} updateNote={updateNote} />
     </Grid>
   );
 };
