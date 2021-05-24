@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/JsCourse/static/css/main.35c78365.chunk.css",
-    "main.js": "/JsCourse/static/js/main.d112a526.chunk.js",
-    "main.js.map": "/JsCourse/static/js/main.d112a526.chunk.js.map",
+    "main.js": "/JsCourse/static/js/main.dfe33062.chunk.js",
+    "main.js.map": "/JsCourse/static/js/main.dfe33062.chunk.js.map",
     "runtime-main.js": "/JsCourse/static/js/runtime-main.81ff4723.js",
     "runtime-main.js.map": "/JsCourse/static/js/runtime-main.81ff4723.js.map",
-    "static/js/2.341f6667.chunk.js": "/JsCourse/static/js/2.341f6667.chunk.js",
-    "static/js/2.341f6667.chunk.js.map": "/JsCourse/static/js/2.341f6667.chunk.js.map",
+    "static/js/2.5c3af534.chunk.js": "/JsCourse/static/js/2.5c3af534.chunk.js",
+    "static/js/2.5c3af534.chunk.js.map": "/JsCourse/static/js/2.5c3af534.chunk.js.map",
     "index.html": "/JsCourse/index.html",
     "static/css/main.35c78365.chunk.css.map": "/JsCourse/static/css/main.35c78365.chunk.css.map",
-    "static/js/2.341f6667.chunk.js.LICENSE.txt": "/JsCourse/static/js/2.341f6667.chunk.js.LICENSE.txt",
+    "static/js/2.5c3af534.chunk.js.LICENSE.txt": "/JsCourse/static/js/2.5c3af534.chunk.js.LICENSE.txt",
     "static/media/index.css": "/JsCourse/static/media/background.e141f6e9.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.81ff4723.js",
-    "static/js/2.341f6667.chunk.js",
+    "static/js/2.5c3af534.chunk.js",
     "static/css/main.35c78365.chunk.css",
-    "static/js/main.d112a526.chunk.js"
+    "static/js/main.dfe33062.chunk.js"
   ]
 }
