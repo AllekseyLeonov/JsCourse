@@ -5,24 +5,19 @@ import PropTypes from "prop-types";
 
 import "./styles.css";
 import ActiveNoteEditingDialog from "./ActiveNoteEditingDialog";
-
-const ActiveNoteContainer = ({ children }) => (
-  <Grid className="ActiveNote" container item xs={9} wrap="nowrap">
-    {children}
-  </Grid>
-);
+import BodyContainer from "../../components/BodyContainer";
 
 const ActiveNote = ({ selectedItem, updateNote }) => {
   const [isDialogOpen, setDialogOpen] = React.useState(false);
   if (!selectedItem) {
     return (
-      <ActiveNoteContainer>
+      <BodyContainer>
         <Typography variant="h3">Select note to display</Typography>
-      </ActiveNoteContainer>
+      </BodyContainer>
     );
   }
   return (
-    <ActiveNoteContainer>
+    <BodyContainer>
       <Grid container direction="column" alignItems="center">
         <Typography className="ActiveNoteTitle" variant="h3">
           {selectedItem.title}
@@ -45,7 +40,7 @@ const ActiveNote = ({ selectedItem, updateNote }) => {
         setOpen={setDialogOpen}
         updateNote={updateNote}
       />
-    </ActiveNoteContainer>
+    </BodyContainer>
   );
 };
 
@@ -62,14 +57,6 @@ ActiveNote.propTypes = {
 ActiveNote.defaultProps = {
   selectedItem: null,
   updateNote: () => {},
-};
-
-ActiveNoteContainer.propTypes = {
-  children: PropTypes.element,
-};
-
-ActiveNoteContainer.defaultProps = {
-  children: <div />,
 };
 
 export default ActiveNote;
