@@ -1,7 +1,10 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
+import { Typography } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
+
+import "./styles.css";
 
 const HeaderMenu = () => (
   <AppBar position="static" style={{ backgroundColor: "rgb(196, 116, 69)" }}>
@@ -12,27 +15,33 @@ const HeaderMenu = () => (
         alignItems: "inherit",
       }}
     >
-      <Button
-        href="/JsCourse"
-        style={{ flexGrow: "1", height: "inherit" }}
-        color="inherit"
-      >
-        My notes
-      </Button>
-      <Button
-        href="/JsCourse/SharedNotes"
-        style={{ flexGrow: "1", height: "inherit" }}
-        color="inherit"
-      >
-        Shared notes
-      </Button>
-      <Button
-        href="/JsCourse/About"
-        style={{ flexGrow: "1", height: "inherit" }}
-        color="inherit"
-      >
-        About
-      </Button>
+      <Typography variant="h5" className="HeaderItem">
+        <NavLink
+          to="/notes"
+          activeClassName="ActiveNavLink"
+          className="NavLink"
+        >
+          My notes
+        </NavLink>
+      </Typography>
+      <Typography variant="h5" className="HeaderItem">
+        <NavLink
+          to="/shared-notes"
+          activeClassName="ActiveNavLink"
+          className="NavLink"
+        >
+          Shared notes
+        </NavLink>
+      </Typography>
+      <Typography variant="h5" className="HeaderItem">
+        <NavLink
+          to="/about"
+          activeClassName="ActiveNavLink"
+          className="NavLink"
+        >
+          About
+        </NavLink>
+      </Typography>
     </Toolbar>
   </AppBar>
 );

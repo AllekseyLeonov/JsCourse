@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import HeaderMenu from "./components/HeaderMenu";
 import NotesContainer from "./pages/notes/NotesContainer";
@@ -8,19 +8,16 @@ import About from "./pages/about/About";
 import Error404 from "./pages/errors/Error404";
 
 const App = () => (
-  <BrowserRouter>
+  <HashRouter basename="/">
     <HeaderMenu />
     <Switch>
-      <Route exact path="/JsCourse" component={NotesContainer} />
-      <Route
-        exact
-        path="/JsCourse/SharedNotes"
-        component={SharedNotesContainer}
-      />
-      <Route exact path="/JsCourse/About" component={About} />
+      <Route exact path="/notes" component={NotesContainer} />
+      <Route exact path="/shared-notes" component={SharedNotesContainer} />
+      <Route exact path="/about" component={About} />
       <Route component={Error404} />
     </Switch>
-  </BrowserRouter>
+    <Redirect from="/" to="/notes" />
+  </HashRouter>
 );
 
 export default App;
