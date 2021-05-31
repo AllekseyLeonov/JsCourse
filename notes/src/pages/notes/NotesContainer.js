@@ -1,24 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 
 import NotesListMenu from "./NotesListMenu";
 import ActiveNote from "./ActiveNote";
 import NOTES from "../../config/constants/NOTES";
+import "./styles.css";
+
+const NOTES_ARRAY_KEY = "notesArray";
 
 const NotesContainer = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(null);
-  const changeSelectedIndex = (index) => {
-    setSelectedIndex(index);
+  const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
+
+  const [notesArray, setNotesArray] = useState(
+    loadedNotesAsString ? JSON.parse(loadedNotesAsString) : NOTES
+  );
+  const [selectedNote, setSelectedNote] = useState(null);
+
+  const updateNote = (title, content) => {
+    const updatedArray = notesArray.map((note) => {
+      if (note.id === selectedNote.id) {
+        const updatedNote = {
+          id: note.id,
+          title,
+          content,
+          date: note.date,
+        };
+        setSelectedNote(updatedNote);
+        return updatedNote;
+      }
+      return note;
+    });
+    setNotesArray(updatedArray);
+
+    localStorage.setItem(NOTES_ARRAY_KEY, JSON.stringify(updatedArray));
   };
+
   return (
-    <Grid container direction="row" wrap="nowrap">
-      <NotesListMenu
-        notesArray={NOTES}
-        selectedIndex={selectedIndex}
-        changeSelectedIndex={changeSelectedIndex}
-      />
-      <ActiveNote item xs={3} selectedItem={NOTES[selectedIndex]} />
-    </Grid>
+    <div className="NotesContainer">
+      <Grid container direction="row" wrap="nowrap" justify="space-between">
+        <NotesListMenu
+          notesArray={notesArray}
+          selectedIndex={selectedNote ? selectedNote.id : null}
+          changeSelectedIndex={(index) => setSelectedNote(notesArray[index])}
+        />
+        <ActiveNote item selectedItem={selectedNote} updateNote={updateNote} />
+      </Grid>
+    </div>
   );
 };
 

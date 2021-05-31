@@ -1,0 +1,23 @@
+.NotesContainer {
+  display: flex;
+  width: 90%;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.ActiveNoteTitle {
+  text-align: center;
+}
+.ActiveNoteContent {
+  word-wrap: break-word;
+  text-align: justify;
+}
+.NotesListMenu {
+  height: auto;
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.DialogInputField {
+  width: 100%;
+}

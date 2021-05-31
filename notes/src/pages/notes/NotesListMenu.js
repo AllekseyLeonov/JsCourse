@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import styles from "./styles";
+import "./styles.css";
 import SearchField from "../../components/SearchField";
 import NotesList from "./NotesList";
 
-const NotesListMenu = ({ notesArray, selectedIndex, changeSelectedIndex }) => (
-  <Grid style={styles.notesListMenu} container item xs={3} direction="column">
-    <SearchField />
-    <NotesList
-      notesArray={notesArray}
-      selectedIndex={selectedIndex}
-      setSelectedIndex={changeSelectedIndex}
-    />
-  </Grid>
-);
+const NotesListMenu = ({ notesArray, selectedIndex, changeSelectedIndex }) => {
+  const [filteredArray, setFilteredArray] = useState(notesArray);
+
+  return (
+    <Grid className="NotesListMenu" container item xs={3} direction="column">
+      <SearchField array={notesArray} setArray={setFilteredArray} />
+      <NotesList
+        notesArray={filteredArray}
+        selectedIndex={selectedIndex}
+        setSelectedIndex={changeSelectedIndex}
+      />
+    </Grid>
+  );
+};
 
 NotesListMenu.propTypes = {
   notesArray: PropTypes.arrayOf(PropTypes.object),
@@ -25,7 +29,7 @@ NotesListMenu.propTypes = {
 
 NotesListMenu.defaultProps = {
   notesArray: [],
-  selectedIndex: -1,
+  selectedIndex: null,
   changeSelectedIndex() {},
 };
 
