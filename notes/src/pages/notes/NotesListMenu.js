@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -7,7 +7,8 @@ import SearchField from "../../components/SearchField";
 import NotesList from "./NotesList";
 
 const NotesListMenu = ({ notesArray, selectedIndex, changeSelectedIndex }) => {
-  const [filteredArray, setFilteredArray] = React.useState(notesArray);
+  const [filteredArray, setFilteredArray] = useState(notesArray);
+
   return (
     <Grid className="NotesListMenu" container item xs={3} direction="column">
       <SearchField array={notesArray} setArray={setFilteredArray} />

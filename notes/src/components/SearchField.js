@@ -4,25 +4,30 @@ import SearchIcon from "@material-ui/icons/Search";
 import Input from "@material-ui/core/Input";
 import PropTypes from "prop-types";
 
-const SearchField = ({ array, setArray }) => (
-  <Input
-    label="Search"
-    onChange={(event) => {
-      const searchText = event.target.value;
-      document.title = "rac".includes("r").toString();
-      setArray(
-        array.filter((item) =>
-          item.title.toLowerCase().includes(searchText.toLowerCase())
-        )
-      );
-    }}
-    startAdornment={
-      <InputAdornment>
-        <SearchIcon />
-      </InputAdornment>
-    }
-  />
-);
+const SearchField = ({ array, setArray }) => {
+  const handleInputChange = (event) => {
+    const searchText = event.target.value;
+    setArray(
+      array.filter(
+        (item) =>
+          item.title.toLowerCase().includes(searchText.toLowerCase()) ||
+          item.content.toLowerCase().includes(searchText.toLowerCase())
+      )
+    );
+  };
+
+  return (
+    <Input
+      label="Search"
+      onChange={handleInputChange}
+      startAdornment={
+        <InputAdornment>
+          <SearchIcon />
+        </InputAdornment>
+      }
+    />
+  );
+};
 
 SearchField.propTypes = {
   array: PropTypes.arrayOf(PropTypes.object),

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Grid } from "@material-ui/core";
@@ -22,8 +22,28 @@ const ActiveNoteEditingDialog = ({
 }) => {
   let textFieldTitle = noteTitle;
   let textFieldContent = noteContent;
-  const [isTitleCorrect, setIsTitleCorrect] = React.useState(true);
-  const [isContentCorrect, setIsContentCorrect] = React.useState(true);
+
+  const [isTitleCorrect, setIsTitleCorrect] = useState(true);
+  const [isContentCorrect, setIsContentCorrect] = useState(true);
+
+  const checkIsTitleCorrect = (title) =>
+    title.length > 0 && title.length < TITLE_MAX_LENGTH;
+  const checkIsContentCorrect = (content) =>
+    content.length > 0 && content.length < CONTENT_MAX_LENGTH;
+
+  const handleTitleFieldChange = (event) => {
+    textFieldTitle = event.target.value;
+    setIsTitleCorrect(checkIsTitleCorrect(textFieldTitle));
+  };
+  const handleContentFieldChange = (event) => {
+    textFieldContent = event.target.value;
+    setIsContentCorrect(checkIsContentCorrect(textFieldContent));
+  };
+  const handleSaveBtnClick = () => {
+    updateNote(textFieldTitle, textFieldContent);
+    setOpen(false);
+  };
+
   return (
     <Dialog open={isOpen} fullWidth="true" maxWidth="false">
       <DialogTitle>Editing note</DialogTitle>
@@ -35,13 +55,7 @@ const ActiveNoteEditingDialog = ({
             className="DialogInputField"
             label="title"
             defaultValue={textFieldTitle}
-            onChange={(event) => {
-              textFieldTitle = event.target.value;
-              setIsTitleCorrect(
-                textFieldTitle.length > 0 &&
-                  textFieldTitle.length < TITLE_MAX_LENGTH
-              );
-            }}
+            onChange={handleTitleFieldChange}
             helperText={
               isTitleCorrect
                 ? ""
@@ -53,13 +67,7 @@ const ActiveNoteEditingDialog = ({
             className="DialogInputField"
             label="content"
             defaultValue={textFieldContent}
-            onChange={(event) => {
-              textFieldContent = event.target.value;
-              setIsContentCorrect(
-                textFieldContent.length > 0 &&
-                  textFieldContent.length < CONTENT_MAX_LENGTH
-              );
-            }}
+            onChange={handleContentFieldChange}
             helperText={
               isContentCorrect
                 ? ""
@@ -70,13 +78,10 @@ const ActiveNoteEditingDialog = ({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setOpen(false)}>Close</Button>
+        <Button onClick={() => setOpen(!isOpen)}>Close</Button>
         <Button
           disabled={!(isTitleCorrect && isContentCorrect)}
-          onClick={() => {
-            updateNote(textFieldTitle, textFieldContent);
-            setOpen(false);
-          }}
+          onClick={handleSaveBtnClick}
         >
           Save
         </Button>

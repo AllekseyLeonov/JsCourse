@@ -5,6 +5,7 @@ import { Typography } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
 import "./styles.css";
+import ROUTES from "../config/constants/ROUTES";
 
 const HeaderMenu = () => (
   <AppBar position="static" style={{ backgroundColor: "rgb(196, 116, 69)" }}>
@@ -17,7 +18,7 @@ const HeaderMenu = () => (
     >
       <Typography variant="h5" className="HeaderItem">
         <NavLink
-          to="/notes"
+          to={ROUTES.notes}
           activeClassName="ActiveNavLink"
           className="NavLink"
         >
@@ -26,7 +27,7 @@ const HeaderMenu = () => (
       </Typography>
       <Typography variant="h5" className="HeaderItem">
         <NavLink
-          to="/shared-notes"
+          to={ROUTES.sharedNotes}
           activeClassName="ActiveNavLink"
           className="NavLink"
         >
@@ -35,7 +36,7 @@ const HeaderMenu = () => (
       </Typography>
       <Typography variant="h5" className="HeaderItem">
         <NavLink
-          to="/about"
+          to={ROUTES.about}
           activeClassName="ActiveNavLink"
           className="NavLink"
         >

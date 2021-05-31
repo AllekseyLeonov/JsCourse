@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
@@ -8,15 +8,9 @@ import ActiveNoteEditingDialog from "./ActiveNoteEditingDialog";
 import BodyContainer from "../../components/BodyContainer";
 
 const ActiveNote = ({ selectedItem, updateNote }) => {
-  const [isDialogOpen, setDialogOpen] = React.useState(false);
-  if (!selectedItem) {
-    return (
-      <BodyContainer>
-        <Typography variant="h3">Select note to display</Typography>
-      </BodyContainer>
-    );
-  }
-  return (
+  const [isDialogOpen, setDialogState] = useState(false);
+
+  return selectedItem ? (
     <BodyContainer>
       <Grid container direction="column" alignItems="center">
         <Typography className="ActiveNoteTitle" variant="h3">
@@ -27,7 +21,7 @@ const ActiveNote = ({ selectedItem, updateNote }) => {
         </Typography>
       </Grid>
       <Button
-        onClick={() => setDialogOpen(true)}
+        onClick={() => setDialogState(!isDialogOpen)}
         style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
       >
         {" "}
@@ -37,9 +31,13 @@ const ActiveNote = ({ selectedItem, updateNote }) => {
         noteTitle={selectedItem.title}
         noteContent={selectedItem.content}
         isOpen={isDialogOpen}
-        setOpen={setDialogOpen}
+        setOpen={setDialogState}
         updateNote={updateNote}
       />
+    </BodyContainer>
+  ) : (
+    <BodyContainer>
+      <Typography variant="h3">Select note to display</Typography>
     </BodyContainer>
   );
 };

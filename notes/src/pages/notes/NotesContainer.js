@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 
 import NotesListMenu from "./NotesListMenu";
@@ -10,25 +10,28 @@ const NOTES_ARRAY_KEY = "notesArray";
 
 const NotesContainer = () => {
   const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
-  const [notesArray, setNotesArray] = React.useState(
+
+  const [notesArray, setNotesArray] = useState(
     loadedNotesAsString ? JSON.parse(loadedNotesAsString) : NOTES
   );
-  const [selectedNote, setSelectedNote] = React.useState(null);
+  const [selectedNote, setSelectedNote] = useState(null);
+
   const updateNote = (title, content) => {
-    const updatedArray = notesArray.map((item) => {
-      if (item.id === selectedNote.id) {
+    const updatedArray = notesArray.map((note) => {
+      if (note.id === selectedNote.id) {
         const updatedNote = {
-          id: item.id,
+          id: note.id,
           title,
           content,
-          date: item.date,
+          date: note.date,
         };
         setSelectedNote(updatedNote);
         return updatedNote;
       }
-      return item;
+      return note;
     });
     setNotesArray(updatedArray);
+
     localStorage.setItem(NOTES_ARRAY_KEY, JSON.stringify(updatedArray));
   };
 
