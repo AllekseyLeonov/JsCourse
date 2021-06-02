@@ -60,6 +60,13 @@ const RegistrationMenuContainer = ({
       }
       if (!values.password) {
         errors.password = "Required";
+      } else if (
+        !/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/.test(
+          values.password
+        )
+      ) {
+        errors.password =
+          "Password must contain numbers, latin letters (lower- and uppercase) and be at least 6 characters long";
       }
       if (!values.confirmPassword) {
         errors.confirmPassword = "Required";
