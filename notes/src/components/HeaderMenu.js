@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 
 import "./styles.css";
 import ROUTES from "../config/constants/ROUTES";
+import SignInManager from "./SignInManager";
 
 const HeaderMenu = () => (
   <AppBar position="static" style={{ backgroundColor: "rgb(196, 116, 69)" }}>
@@ -43,6 +44,7 @@ const HeaderMenu = () => (
           About
         </NavLink>
       </Typography>
+      <SignInManager />
     </Toolbar>
   </AppBar>
 );

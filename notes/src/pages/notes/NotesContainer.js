@@ -4,9 +4,8 @@ import { Grid } from "@material-ui/core";
 import NotesListMenu from "./NotesListMenu";
 import ActiveNote from "./ActiveNote";
 import NOTES from "../../config/constants/NOTES";
+import { NOTES_ARRAY_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
 import "./styles.css";
-
-const NOTES_ARRAY_KEY = "notesArray";
 
 const NotesContainer = () => {
   const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
