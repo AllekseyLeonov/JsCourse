@@ -1,18 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import ProfileInfo from "./ProfileInfo";
 import SignInMenu from "./SignInMenu";
-import { USER_DATA_KEY } from "../config/constants/LOCAL_STORAGE_KEYS";
+import setSignInState from "../redux/signInState/actions";
 
-const SignInManager = () => {
-  const [isAuthorized, setIsAuthorised] = useState(
-    Boolean(localStorage.getItem(USER_DATA_KEY))
-  );
-  return isAuthorized ? (
-    <ProfileInfo setIsAuthorised={setIsAuthorised} />
+const SignInManager = ({ isSignIn, setIsSignIn }) =>
+  isSignIn ? (
+    <ProfileInfo setIsAuthorised={setIsSignIn} />
   ) : (
-    <SignInMenu setIsAuthorised={setIsAuthorised} />
+    <SignInMenu setIsAuthorised={setIsSignIn} />
   );
+
+const setStateToProps = (state) => ({
+  isSignIn: state.signIn.isSignIn,
+});
+
+const setDispatchToProps = (dispatch) => ({
+  setIsSignIn: bindActionCreators(setSignInState, dispatch),
+});
+
+SignInManager.propTypes = {
+  isSignIn: PropTypes.bool,
+  setIsSignIn: PropTypes.func,
 };
 
-export default SignInManager;
+SignInManager.defaultProps = {
+  isSignIn: false,
+  setIsSignIn: () => {},
+};
+
+export default connect(setStateToProps, setDispatchToProps)(SignInManager);
