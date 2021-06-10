@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { Menu, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+
+import "../styles.css";
 
 import {
   setAuthBirthDate,
   setAuthEmail,
   setAuthFirstName,
   setAuthLastName,
-} from "../redux/auth/actions";
+} from "../../redux/auth/actions";
 
 const ProfileInfo = ({
   email,
@@ -29,31 +33,46 @@ const ProfileInfo = ({
   };
 
   return (
-    <div>
-      <Button onClick={handleClick}>Profile</Button>
+    <Box className="SignButtonBox">
+      <Button onClick={handleClick}>
+        <Typography variant="h5" className="SignButton">
+          Profile
+        </Typography>
+      </Button>
       <Menu
-        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <div>
-          <Typography variant="h5">{email}</Typography>
-          <Typography variant="h5">{firstName}</Typography>
-          <Typography variant="h5">{lastName}</Typography>
-          <Typography variant="h5">{dateOfBirth}</Typography>
+        <Box className="Menu">
+          <AccountCircleIcon className="ProfileIcon MenuItem CenteredMenuItem" />
+          <Typography variant="h5" className="MenuItem">
+            Mail: {email}
+          </Typography>
+          <Typography variant="h5" className="MenuItem">
+            Name: {firstName}
+          </Typography>
+          <Typography variant="h5" className="MenuItem">
+            Surname: {lastName}
+          </Typography>
+          <Typography variant="h5" className="MenuItem">
+            Date of birth: {dateOfBirth}
+          </Typography>
           <Button
-            color="primary"
+            className="MenuItem CenteredMenuItem"
+            style={{
+              backgroundColor: "rgba(196, 116, 69, 0.7)",
+              color: "white",
+            }}
             variant="contained"
             onClick={() => setIsAuthorised(false)}
-            fullWidth
           >
             Log out
           </Button>
-        </div>
+        </Box>
       </Menu>
-    </div>
+    </Box>
   );
 };
 const setStateToProps = (state) => ({

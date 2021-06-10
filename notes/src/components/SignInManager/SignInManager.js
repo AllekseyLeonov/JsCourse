@@ -3,9 +3,9 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import ProfileInfo from "./ProfileInfo";
-import SignInMenu from "./SignInMenu";
-import setSignInState from "../redux/signInState/actions";
+import ProfileInfo from "../ProfileInfo";
+import SignInMenu from "../SignInMenu";
+import setSignInState from "../../redux/signInState/actions";
 
 const SignInManager = ({ isSignIn, setIsSignIn }) =>
   isSignIn ? (

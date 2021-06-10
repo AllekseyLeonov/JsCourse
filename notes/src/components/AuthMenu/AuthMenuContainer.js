@@ -5,8 +5,9 @@ import axios from "axios";
 import { useFormik } from "formik";
 
 import AuthMenu from "./AuthMenu";
-import { USER_DATA_KEY } from "../config/constants/LOCAL_STORAGE_KEYS";
-import userApi from "../config/constants/API_CONFIG";
+import { USER_DATA_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
+import userApi from "../../config/constants/API_CONFIG";
+import { validateAuthInfo } from "../../utils/validations";
 
 const AuthMenuContainer = ({
   email,
@@ -25,28 +26,7 @@ const AuthMenuContainer = ({
       password: "",
     },
 
-    validate: (values) => {
-      const errors = {};
-      if (!values.email) {
-        errors.email = "Required";
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-      ) {
-        errors.email = "Invalid email address";
-      }
-      if (!values.password) {
-        errors.password = "Required";
-      }
-      if (
-        data.data.filter(
-          (user) =>
-            user.email === values.email && user.password === values.password
-        ).length === 0
-      ) {
-        errors.email = "Such user not found";
-      }
-      return errors;
-    },
+    validate: (values) => validateAuthInfo(values, data),
 
     onSubmit: (values, actions) => {
       const userData = data.data.filter(

@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import "./styles.css";
+import "../styles.css";
 
 const BodyContainer = ({ children }) => (
   <Grid className="ActiveNote" container wrap="nowrap">

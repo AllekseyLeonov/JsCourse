@@ -24,3 +24,38 @@
 .ActiveNavLink {
   color: yellow;
 }
+
+.SignButtonBox {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.SignButton {
+  text-decoration: none;
+  text-transform: none;
+  color: white;
+}
+
+.Menu {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0 30px;
+  max-width: 300px;
+}
+
+.MenuItem {
+  padding: 5px 0;
+  display: flex;
+  width: 100%;
+}
+
+.CenteredMenuItem {
+  align-self: center;
+}
+
+.ProfileIcon {
+  transform: scale(2, 2);
+  color: rgb(196, 116, 69);
+}

@@ -4,9 +4,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { Typography } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
-import "./styles.css";
-import ROUTES from "../config/constants/ROUTES";
-import SignInManager from "./SignInManager";
+import "../styles.css";
+import ROUTES from "../../config/constants/ROUTES";
+import SignInManager from "../SignInManager";
 
 const HeaderMenu = () => (
   <AppBar position="static" style={{ backgroundColor: "rgb(196, 116, 69)" }}>
