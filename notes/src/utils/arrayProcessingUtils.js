@@ -3,6 +3,7 @@ export const SORT_PARAMETERS = {
   nameDescending: 1,
   dateAscending: 2,
   dateDescending: 3,
+  none: 4,
 };
 
 export const sortNotesArray = (array, sortParameter) => {
@@ -31,7 +32,17 @@ export const sortNotesArray = (array, sortParameter) => {
         if (note1.date > note2.date) return -1;
         return 0;
       });
+    case SORT_PARAMETERS.none:
+      return array;
     default:
       return {};
   }
+};
+
+export const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
 };

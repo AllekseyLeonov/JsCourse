@@ -49,10 +49,11 @@ const NotesListMenu = ({
       <SearchField array={notesArray} setArray={setFilteredArray} />
       <FilterField setSortingParameter={setSortingParameter} />
       <NotesList
-        userEmail={userEmail}
         notesArray={sortNotesArray(filteredArray, sortingParameter)}
         selectedIndex={selectedIndex}
         setSelectedIndex={changeSelectedIndex}
+        setFilteredArray={setFilteredArray}
+        setSortingParameter={setSortingParameter}
       />
       <Button
         style={{
