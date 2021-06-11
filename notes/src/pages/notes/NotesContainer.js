@@ -43,6 +43,7 @@ const NotesContainer = () => {
           changeSelectedIndex={(index) =>
             setSelectedNote(notesArray.find((note) => note.id === index))
           }
+          setNotesArray={setNotesArray}
         />
         <ActiveNote item selectedItem={selectedNote} updateNote={updateNote} />
       </Grid>

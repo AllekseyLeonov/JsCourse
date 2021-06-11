@@ -5,3 +5,8 @@ export const getPreviewString = (stringToFormat, lengthOfPreviewString) =>
 
 const YEAR_STRING_LENGTH = 4;
 export const getYearFromDate = (date) => date.substring(0, YEAR_STRING_LENGTH);
+
+export const formatDate = (date) =>
+  `${date.getDate() > 10 ? date.getDate() : `0${date.getDate()}`}.${
+    date.getMonth() > 10 ? date.getMonth() : `0${date.getMonth()}`
+  }.${date.getFullYear()}`;

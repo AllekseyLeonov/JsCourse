@@ -12,7 +12,7 @@ const FilterField = ({ setSortingParameter }) => (
       Sort by
     </Typography>
     <Select
-      defaultValue={SORT_PARAMETERS.dateAscending}
+      defaultValue={SORT_PARAMETERS.dateDescending}
       style={{ flexGrow: "1" }}
       onChange={(event) => setSortingParameter(event.target.value)}
     >

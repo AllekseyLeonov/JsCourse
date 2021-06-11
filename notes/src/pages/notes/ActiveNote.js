@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
 import "./styles.css";
-import ActiveNoteEditingDialog from "./ActiveNoteEditingDialog";
+import NoteProcessingDialog from "./NoteProcessingDialog";
 import BodyContainer from "../../components/BodyContainer";
 
 const ActiveNote = ({ selectedItem, updateNote }) => {
@@ -27,12 +27,13 @@ const ActiveNote = ({ selectedItem, updateNote }) => {
         {" "}
         Edit{" "}
       </Button>
-      <ActiveNoteEditingDialog
+      <NoteProcessingDialog
+        dialogTitle="Editing note"
         noteTitle={selectedItem.title}
         noteContent={selectedItem.content}
         isOpen={isDialogOpen}
         setOpen={setDialogState}
-        updateNote={updateNote}
+        onSubmit={updateNote}
       />
     </BodyContainer>
   ) : (

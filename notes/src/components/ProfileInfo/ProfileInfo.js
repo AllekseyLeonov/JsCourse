@@ -75,6 +75,7 @@ const ProfileInfo = ({
     </Box>
   );
 };
+
 const setStateToProps = (state) => ({
   email: state.auth.email,
   firstName: state.auth.firstName,

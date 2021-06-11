@@ -9,16 +9,18 @@ import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
 
 import "./styles.css";
+import {
+  TITLE_MAX_LENGTH,
+  CONTENT_MAX_LENGTH,
+} from "../../config/constants/NOTES";
 
-const TITLE_MAX_LENGTH = 35;
-const CONTENT_MAX_LENGTH = 2000;
-
-const ActiveNoteEditingDialog = ({
+const NoteProcessingDialog = ({
+  dialogTitle,
   noteTitle,
   noteContent,
   isOpen,
   setOpen,
-  updateNote,
+  onSubmit,
 }) => {
   let textFieldTitle = noteTitle;
   let textFieldContent = noteContent;
@@ -40,13 +42,13 @@ const ActiveNoteEditingDialog = ({
     setIsContentCorrect(checkIsContentCorrect(textFieldContent));
   };
   const handleSaveBtnClick = () => {
-    updateNote(textFieldTitle, textFieldContent);
+    onSubmit(textFieldTitle, textFieldContent);
     setOpen(false);
   };
 
   return (
     <Dialog open={isOpen} fullWidth="true" maxWidth="false">
-      <DialogTitle>Editing note</DialogTitle>
+      <DialogTitle>{dialogTitle}</DialogTitle>
       <DialogContent>
         <Grid direction="column">
           <TextField
@@ -90,20 +92,22 @@ const ActiveNoteEditingDialog = ({
   );
 };
 
-ActiveNoteEditingDialog.propTypes = {
+NoteProcessingDialog.propTypes = {
+  dialogTitle: PropTypes.string,
   noteTitle: PropTypes.string,
   noteContent: PropTypes.string,
   isOpen: PropTypes.bool,
   setOpen: PropTypes.func,
-  updateNote: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
-ActiveNoteEditingDialog.defaultProps = {
+NoteProcessingDialog.defaultProps = {
+  dialogTitle: "",
   noteTitle: "",
   noteContent: "",
   isOpen: false,
   setOpen: () => {},
-  updateNote: () => {},
+  onSubmit: () => {},
 };
 
-export default ActiveNoteEditingDialog;
+export default NoteProcessingDialog;
