@@ -15,6 +15,7 @@ import {
 } from "../../utils/arrayProcessingUtils";
 import { formatDate } from "../../utils/textFormatUtils";
 import NoteProcessingDialog from "./NoteProcessingDialog";
+import { NOTES_ARRAY_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
 
 const NotesListMenu = ({
   userEmail,
@@ -41,6 +42,10 @@ const NotesListMenu = ({
       date: formatDate(new Date()),
       userEmail,
     };
+    localStorage.setItem(
+      NOTES_ARRAY_KEY,
+      JSON.stringify(notesArray.concat(newNote))
+    );
     setNotesArray(notesArray.concat(newNote));
   };
 
@@ -49,7 +54,9 @@ const NotesListMenu = ({
       <SearchField array={notesArray} setArray={setFilteredArray} />
       <FilterField setSortingParameter={setSortingParameter} />
       <NotesList
-        notesArray={sortNotesArray(filteredArray, sortingParameter)}
+        notesArray={sortNotesArray(filteredArray, sortingParameter).filter(
+          (note) => note.userEmail === "" || note.userEmail === userEmail
+        )}
         selectedIndex={selectedIndex}
         setSelectedIndex={changeSelectedIndex}
         setFilteredArray={setFilteredArray}
