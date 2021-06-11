@@ -40,7 +40,9 @@ const NotesContainer = () => {
         <NotesListMenu
           notesArray={notesArray}
           selectedIndex={selectedNote ? selectedNote.id : null}
-          changeSelectedIndex={(index) => setSelectedNote(notesArray[index])}
+          changeSelectedIndex={(index) =>
+            setSelectedNote(notesArray.find((note) => note.id === index))
+          }
         />
         <ActiveNote item selectedItem={selectedNote} updateNote={updateNote} />
       </Grid>
