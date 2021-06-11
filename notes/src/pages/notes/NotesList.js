@@ -10,14 +10,21 @@ import PropTypes from "prop-types";
 import { getPreviewString } from "../../utils/textFormatUtils";
 
 const LENGTH_OF_NOTE_CONTENT_PREVIEW = 20;
+const DEFAULT_NOTES_COLOR = "rgba(0, 0, 0, 0.1)";
+const CUSTOM_NOTES_COLOR = "rgba(0, 255, 0, 0.3)";
 
 const NotesList = ({ notesArray, selectedIndex, setSelectedIndex }) => (
-  <List>
+  <List style={{ maxHeight: "400px", overflow: "auto" }}>
     {notesArray.map((item) => (
       <ListItem
         button
         selected={selectedIndex === item.id}
         onClick={() => setSelectedIndex(item.id)}
+        style={
+          item.userEmail === ""
+            ? { backgroundColor: DEFAULT_NOTES_COLOR }
+            : { backgroundColor: CUSTOM_NOTES_COLOR }
+        }
       >
         <ListItemIcon>
           <NoteIcon />
