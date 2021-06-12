@@ -24,8 +24,7 @@ const ActiveNote = ({ selectedItem, updateNote }) => {
         onClick={() => setDialogState(!isDialogOpen)}
         style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
       >
-        {" "}
-        Edit{" "}
+        Edit
       </Button>
       <NoteProcessingDialog
         dialogTitle="Editing note"
@@ -49,6 +48,7 @@ ActiveNote.propTypes = {
     title: PropTypes.string,
     content: PropTypes.string,
     date: PropTypes.string,
+    userEmail: PropTypes.string,
   }),
   updateNote: PropTypes.func,
 };

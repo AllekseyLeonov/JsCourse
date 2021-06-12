@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 
 import AuthMenu from "./AuthMenu";
 import { USER_DATA_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
-import userApi from "../../config/constants/API_CONFIG";
+import { userApi } from "../../config/constants/API_CONFIG";
 import { validateAuthInfo } from "../../utils/validations";
 
 const AuthMenuContainer = ({
