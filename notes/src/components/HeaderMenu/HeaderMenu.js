@@ -17,7 +17,7 @@ const HeaderMenu = () => {
         <Typography variant="h5" className={classes.HeaderItem}>
           <NavLink
             to={ROUTES.notes}
-            activeClassName="ActiveNavLink"
+            activeClassName={classes.ActiveNavLink}
             className={classes.NavLink}
           >
             My notes
@@ -26,7 +26,7 @@ const HeaderMenu = () => {
         <Typography variant="h5" className={classes.HeaderItem}>
           <NavLink
             to={ROUTES.sharedNotes}
-            activeClassName="ActiveNavLink"
+            activeClassName={classes.ActiveNavLink}
             className={classes.NavLink}
           >
             Shared notes
@@ -35,7 +35,7 @@ const HeaderMenu = () => {
         <Typography variant="h5" className={classes.HeaderItem}>
           <NavLink
             to={ROUTES.about}
-            activeClassName="ActiveNavLink"
+            activeClassName={classes.ActiveNavLink}
             className={classes.NavLink}
           >
             About

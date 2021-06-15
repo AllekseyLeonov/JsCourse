@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Menu, Typography } from "@material-ui/core";
@@ -6,22 +6,21 @@ import PropTypes from "prop-types";
 
 import styles from "../styles";
 
-const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+const RegistrationMenu = ({
+  formik,
+  setIsOnRegistrationProcess,
+  anchorEl,
+  setAnchorEl,
+}) => {
   const classes = styles();
 
   return (
     <div className={classes.SignButtonBox}>
-      <Button onClick={handleClick}>
+      <Button
+        onClick={(event) => {
+          setAnchorEl(event.currentTarget);
+        }}
+      >
         <Typography variant="h5" className={classes.SignButton}>
           Registration
         </Typography>
@@ -31,7 +30,9 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        onClose={() => {
+          setAnchorEl(null);
+        }}
       >
         <div className={`${classes.Menu} ${classes.RegistrationMenu}`}>
           <h1
@@ -157,11 +158,15 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
 RegistrationMenu.propTypes = {
   formik: PropTypes.func,
   setIsOnRegistrationProcess: PropTypes.func,
+  anchorEl: PropTypes.element,
+  setAnchorEl: PropTypes.func,
 };
 
 RegistrationMenu.defaultProps = {
   formik: () => {},
   setIsOnRegistrationProcess: () => {},
+  anchorEl: <div />,
+  setAnchorEl: () => {},
 };
 
 export default RegistrationMenu;

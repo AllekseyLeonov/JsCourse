@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Grid } from "@material-ui/core";
@@ -13,6 +13,11 @@ import {
   CONTENT_MAX_LENGTH,
   // eslint-disable-next-line import/no-unresolved
 } from "@constants/NOTES";
+import {
+  checkIsContentCorrect,
+  checkIsTitleCorrect,
+  // eslint-disable-next-line import/no-unresolved
+} from "@utils/textFormatUtils";
 import styles from "./styles";
 
 const NoteProcessingDialog = ({
@@ -22,17 +27,13 @@ const NoteProcessingDialog = ({
   isOpen,
   setOpen,
   onSubmit,
+  isTitleCorrect,
+  setIsTitleCorrect,
+  isContentCorrect,
+  setIsContentCorrect,
 }) => {
   let textFieldTitle = noteTitle;
   let textFieldContent = noteContent;
-
-  const [isTitleCorrect, setIsTitleCorrect] = useState(true);
-  const [isContentCorrect, setIsContentCorrect] = useState(true);
-
-  const checkIsTitleCorrect = (title) =>
-    title.length > 0 && title.length < TITLE_MAX_LENGTH;
-  const checkIsContentCorrect = (content) =>
-    content.length > 0 && content.length < CONTENT_MAX_LENGTH;
 
   const handleTitleFieldChange = (event) => {
     textFieldTitle = event.target.value;
@@ -101,6 +102,10 @@ NoteProcessingDialog.propTypes = {
   isOpen: PropTypes.bool,
   setOpen: PropTypes.func,
   onSubmit: PropTypes.func,
+  isTitleCorrect: PropTypes.bool,
+  setIsTitleCorrect: PropTypes.func,
+  isContentCorrect: PropTypes.bool,
+  setIsContentCorrect: PropTypes.func,
 };
 
 NoteProcessingDialog.defaultProps = {
@@ -110,6 +115,10 @@ NoteProcessingDialog.defaultProps = {
   isOpen: false,
   setOpen: () => {},
   onSubmit: () => {},
+  isTitleCorrect: false,
+  setIsTitleCorrect: () => {},
+  isContentCorrect: false,
+  setIsContentCorrect: () => {},
 };
 
 export default NoteProcessingDialog;

@@ -6,8 +6,8 @@ import NOTES from "@constants/NOTES";
 // eslint-disable-next-line import/no-unresolved
 import { NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
 import styles from "./styles";
-import NotesListMenu from "./NotesListMenu";
-import ActiveNote from "./ActiveNote";
+import NotesListMenuContainer from "./NotesListMenuContainer";
+import ActiveNoteContainer from "./ActiveNoteContainer";
 
 const NotesContainer = () => {
   const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
@@ -41,7 +41,7 @@ const NotesContainer = () => {
   return (
     <div className={classes.NotesContainer}>
       <Grid container direction="row" wrap="nowrap" justify="space-between">
-        <NotesListMenu
+        <NotesListMenuContainer
           notesArray={notesArray}
           selectedIndex={selectedNote ? selectedNote.id : null}
           changeSelectedIndex={(index) =>
@@ -49,7 +49,7 @@ const NotesContainer = () => {
           }
           setNotesArray={setNotesArray}
         />
-        <ActiveNote
+        <ActiveNoteContainer
           item
           selectedItem={selectedNote}
           updateNote={updateNote}

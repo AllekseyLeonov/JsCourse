@@ -1,19 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Menu, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 
-import {
-  setAuthBirthDate,
-  setAuthEmail,
-  setAuthFirstName,
-  setAuthLastName,
-  // eslint-disable-next-line import/no-unresolved
-} from "@redux/auth/actions";
 import styles from "../styles";
 
 const ProfileInfo = ({
@@ -22,21 +13,18 @@ const ProfileInfo = ({
   lastName,
   dateOfBirth,
   setIsAuthorised,
+  anchorEl,
+  setAnchorEl,
 }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const classes = styles();
 
   return (
     <Box className={classes.SignButtonBox}>
-      <Button onClick={handleClick}>
+      <Button
+        onClick={(event) => {
+          setAnchorEl(event.currentTarget);
+        }}
+      >
         <Typography variant="h5" className={classes.SignButton}>
           Profile
         </Typography>
@@ -45,7 +33,9 @@ const ProfileInfo = ({
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
-        onClose={handleClose}
+        onClose={() => {
+          setAnchorEl(null);
+        }}
       >
         <Box className={classes.Menu}>
           <AccountCircleIcon
@@ -76,26 +66,14 @@ const ProfileInfo = ({
   );
 };
 
-const setStateToProps = (state) => ({
-  email: state.auth.email,
-  firstName: state.auth.firstName,
-  lastName: state.auth.lastName,
-  dateOfBirth: state.auth.dateOfBirth,
-});
-
-const setDispatchToProps = (dispatch) => ({
-  setEmail: bindActionCreators(setAuthEmail, dispatch),
-  setFirstName: bindActionCreators(setAuthFirstName, dispatch),
-  setLastName: bindActionCreators(setAuthLastName, dispatch),
-  setDateOfBirth: bindActionCreators(setAuthBirthDate, dispatch),
-});
-
 ProfileInfo.propTypes = {
   email: PropTypes.string,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   dateOfBirth: PropTypes.string,
   setIsAuthorised: PropTypes.func,
+  anchorEl: PropTypes.element,
+  setAnchorEl: PropTypes.func,
 };
 
 ProfileInfo.defaultProps = {
@@ -104,6 +82,8 @@ ProfileInfo.defaultProps = {
   lastName: "",
   dateOfBirth: "",
   setIsAuthorised: () => {},
+  anchorEl: <div />,
+  setAnchorEl: () => {},
 };
 
-export default connect(setStateToProps, setDispatchToProps)(ProfileInfo);
+export default ProfileInfo;

@@ -1,3 +1,5 @@
 import ProfileInfo from "./ProfileInfo";
+import ProfileInfoContainer from "./ProfileInfoContainer";
 
-export default ProfileInfo;
+export { ProfileInfo };
+export default ProfileInfoContainer;

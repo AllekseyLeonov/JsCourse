@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
 import BodyContainer from "@components/BodyContainer";
-// eslint-disable-next-line import/no-unresolved
-import { getSharedNoteLink } from "@utils/textFormatUtils";
-// eslint-disable-next-line import/no-unresolved
-import { updateSharedNotesArray } from "@utils/arrayProcessingUtils";
 import styles from "./styles";
-import NoteProcessingDialog from "./NoteProcessingDialog";
+import NoteProcessingDialogContainer from "./NoteProcessingDialogContainer";
 import NoteSharingSnackbar from "./NoteSharingSnackbar";
 
 const ActiveNote = ({
@@ -19,9 +14,12 @@ const ActiveNote = ({
   updateNote,
   userEmail,
   isOnSharedNotes,
+  isDialogOpen,
+  setDialogState,
+  isSnackbarOpen,
+  setSnackbarState,
+  handleShareBtnClick,
 }) => {
-  const [isDialogOpen, setDialogState] = useState(false);
-  const [isSnackbarOpen, setSnackbarState] = useState(false);
   const classes = styles();
 
   return selectedItem ? (
@@ -43,13 +41,7 @@ const ActiveNote = ({
             Edit
           </Button>
           <Button
-            onClick={() => {
-              navigator.clipboard.writeText(
-                getSharedNoteLink(userEmail, selectedItem.id)
-              );
-              updateSharedNotesArray(selectedItem, userEmail);
-              setSnackbarState(true);
-            }}
+            onClick={() => handleShareBtnClick(userEmail, selectedItem)}
             className={`${classes.ActiveNoteContent} ${classes.NotesButtons} ${classes.WithMargin}`}
           >
             Share
@@ -65,7 +57,7 @@ const ActiveNote = ({
         id={selectedItem.id}
         setSnackbarState={setSnackbarState}
       />
-      <NoteProcessingDialog
+      <NoteProcessingDialogContainer
         dialogTitle="Editing note"
         noteTitle={selectedItem.title}
         noteContent={selectedItem.content}
@@ -92,6 +84,11 @@ ActiveNote.propTypes = {
   updateNote: PropTypes.func,
   userEmail: PropTypes.string,
   isOnSharedNotes: PropTypes.bool,
+  isDialogOpen: PropTypes.bool,
+  setDialogState: PropTypes.func,
+  isSnackbarOpen: PropTypes.bool,
+  setSnackbarState: PropTypes.func,
+  handleShareBtnClick: PropTypes.func,
 };
 
 ActiveNote.defaultProps = {
@@ -99,10 +96,11 @@ ActiveNote.defaultProps = {
   updateNote: () => {},
   userEmail: "",
   isOnSharedNotes: false,
+  isDialogOpen: false,
+  setDialogState: () => {},
+  isSnackbarOpen: false,
+  setSnackbarState: () => {},
+  handleShareBtnClick: () => {},
 };
 
-const setStateToProps = (state) => ({
-  userEmail: state.auth.email,
-});
-
-export default connect(setStateToProps)(ActiveNote);
+export default ActiveNote;

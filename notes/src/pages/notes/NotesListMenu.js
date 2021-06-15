@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
@@ -10,48 +9,25 @@ import SearchField from "@components/SearchField";
 // eslint-disable-next-line import/no-unresolved
 import FilterField from "@components/FilterField";
 // eslint-disable-next-line import/no-unresolved
-import { SORT_PARAMETERS, sortNotesArray } from "@utils/arrayProcessingUtils";
-// eslint-disable-next-line import/no-unresolved
-import { formatDate } from "@utils/textFormatUtils";
-// eslint-disable-next-line import/no-unresolved
-import { NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+import { sortNotesArray } from "@utils/arrayProcessingUtils";
 import styles from "./styles";
 import NotesList from "./NotesList";
-import NoteProcessingDialog from "./NoteProcessingDialog";
+import NoteProcessingDialogContainer from "./NoteProcessingDialogContainer";
 
 const NotesListMenu = ({
   userEmail,
   notesArray,
   selectedIndex,
   changeSelectedIndex,
-  setNotesArray,
   isOnSharedNotes,
+  filteredArray,
+  setFilteredArray,
+  sortingParameter,
+  setSortingParameter,
+  isDialogOpen,
+  setDialogState,
+  addNote,
 }) => {
-  const [filteredArray, setFilteredArray] = useState(notesArray);
-  const [sortingParameter, setSortingParameter] = useState(
-    SORT_PARAMETERS.dateDescending
-  );
-  const [isDialogOpen, setDialogState] = useState(false);
-
-  useEffect(() => {
-    setFilteredArray(notesArray);
-  }, [notesArray]);
-
-  const addNote = (title, content) => {
-    const newNote = {
-      id: notesArray.length,
-      title,
-      content,
-      date: formatDate(new Date()),
-      userEmail,
-    };
-    localStorage.setItem(
-      NOTES_ARRAY_KEY,
-      JSON.stringify(notesArray.concat(newNote))
-    );
-    setNotesArray(notesArray.concat(newNote));
-  };
-
   const classes = styles();
 
   return (
@@ -85,7 +61,7 @@ const NotesListMenu = ({
       ) : (
         <div />
       )}
-      <NoteProcessingDialog
+      <NoteProcessingDialogContainer
         dialogTitle="Adding note"
         setOpen={setDialogState}
         isOpen={isDialogOpen}
@@ -97,17 +73,19 @@ const NotesListMenu = ({
   );
 };
 
-const setStateToProps = (state) => ({
-  userEmail: state.auth.email,
-});
-
 NotesListMenu.propTypes = {
   userEmail: PropTypes.string,
   notesArray: PropTypes.arrayOf(PropTypes.object),
   selectedIndex: PropTypes.number,
   changeSelectedIndex: PropTypes.func,
-  setNotesArray: PropTypes.func,
   isOnSharedNotes: PropTypes.bool,
+  filteredArray: PropTypes.arrayOf(PropTypes.object),
+  setFilteredArray: PropTypes.func,
+  sortingParameter: PropTypes.bool,
+  setSortingParameter: PropTypes.func,
+  isDialogOpen: PropTypes.bool,
+  setDialogState: PropTypes.func,
+  addNote: PropTypes.func,
 };
 
 NotesListMenu.defaultProps = {
@@ -115,8 +93,14 @@ NotesListMenu.defaultProps = {
   notesArray: [],
   selectedIndex: null,
   changeSelectedIndex: () => {},
-  setNotesArray: () => {},
   isOnSharedNotes: false,
+  filteredArray: [],
+  setFilteredArray: () => {},
+  sortingParameter: false,
+  setSortingParameter: () => {},
+  isDialogOpen: false,
+  setDialogState: () => {},
+  addNote: () => {},
 };
 
-export default connect(setStateToProps)(NotesListMenu);
+export default NotesListMenu;

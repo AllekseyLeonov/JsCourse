@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
 import { SHARED_NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
-import NotesListMenu from "../notes/NotesListMenu";
-import ActiveNote from "../notes/ActiveNote";
 import styles from "./styles";
+import ActiveNoteContainer from "../notes/ActiveNoteContainer";
+import NotesListMenuContainer from "../notes/NotesListMenuContainer";
 
 const SharedNotesContainer = ({ userEmail }) => {
   const loadedNotesAsString = localStorage.getItem(SHARED_NOTES_ARRAY_KEY);
@@ -27,7 +27,7 @@ const SharedNotesContainer = ({ userEmail }) => {
   return (
     <div className={classes.NotesContainer}>
       <Grid container direction="row" wrap="nowrap" justify="space-between">
-        <NotesListMenu
+        <NotesListMenuContainer
           notesArray={notesArray}
           selectedIndex={selectedNote ? selectedNote.id : null}
           changeSelectedIndex={(index) =>
@@ -36,7 +36,7 @@ const SharedNotesContainer = ({ userEmail }) => {
           setNotesArray={setNotesArray}
           isOnSharedNotes
         />
-        <ActiveNote item selectedItem={selectedNote} isOnSharedNotes />
+        <ActiveNoteContainer item selectedItem={selectedNote} isOnSharedNotes />
       </Grid>
     </div>
   );

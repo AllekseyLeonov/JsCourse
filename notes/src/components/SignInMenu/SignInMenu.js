@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import RegistrationMenuContainer from "../RegistrationMenu";
-import AuthMenuContainer from "../AuthMenu";
-
 import {
   setAuthBirthDate,
   setAuthEmail,
   setAuthFirstName,
   setAuthLastName,
-} from "../../redux/auth/actions";
+  // eslint-disable-next-line import/no-unresolved
+} from "@redux/auth/actions";
+import RegistrationMenuContainer from "../RegistrationMenu";
+import AuthMenuContainer from "../AuthMenu";
 
 const SignInMenu = ({
   email,

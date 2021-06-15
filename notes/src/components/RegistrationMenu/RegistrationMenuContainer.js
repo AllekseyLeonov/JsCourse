@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 
@@ -20,6 +20,8 @@ const RegistrationMenuContainer = ({
   setIsAuthorised,
   setIsOnRegistrationProcess,
 }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const formik = useFormik({
     initialValues: {
       email,
@@ -57,6 +59,8 @@ const RegistrationMenuContainer = ({
     <RegistrationMenu
       formik={formik}
       setIsOnRegistrationProcess={setIsOnRegistrationProcess}
+      setAnchorEl={setAnchorEl}
+      anchorEl={anchorEl}
     />
   );
 };

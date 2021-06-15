@@ -1,5 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
 import ROUTES from "@constants/ROUTES";
+import {
+  TITLE_MAX_LENGTH,
+  CONTENT_MAX_LENGTH,
+  // eslint-disable-next-line import/no-unresolved
+} from "@constants/NOTES";
 
 export const getPreviewString = (stringToFormat, lengthOfPreviewString) =>
   stringToFormat.length > 20
@@ -20,3 +25,8 @@ export const getSharedNoteLink = (email, id) => {
     baseUrl.substring(0, baseUrl.length - 1) + ROUTES.sharedNotes
   }/${email}/${id}`;
 };
+
+export const checkIsTitleCorrect = (title) =>
+  title.length > 0 && title.length < TITLE_MAX_LENGTH;
+export const checkIsContentCorrect = (content) =>
+  content.length > 0 && content.length < CONTENT_MAX_LENGTH;
