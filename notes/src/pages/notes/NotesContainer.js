@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
 import NOTES from "@constants/NOTES";
@@ -9,7 +11,7 @@ import styles from "./styles";
 import NotesListMenuContainer from "./NotesListMenuContainer";
 import ActiveNoteContainer from "./ActiveNoteContainer";
 
-const NotesContainer = () => {
+const NotesContainer = ({ userEmail }) => {
   const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
 
   const [notesArray, setNotesArray] = useState(
@@ -25,6 +27,7 @@ const NotesContainer = () => {
           title,
           content,
           date: note.date,
+          userEmail,
         };
         setSelectedNote(updatedNote);
         return updatedNote;
@@ -60,4 +63,16 @@ const NotesContainer = () => {
   );
 };
 
-export default NotesContainer;
+const setStateToProps = (state) => ({
+  userEmail: state.auth.email,
+});
+
+NotesContainer.propTypes = {
+  userEmail: PropTypes.string,
+};
+
+NotesContainer.defaultProps = {
+  userEmail: "",
+};
+
+export default connect(setStateToProps)(NotesContainer);
