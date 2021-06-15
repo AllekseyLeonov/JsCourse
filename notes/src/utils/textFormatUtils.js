@@ -1,4 +1,5 @@
-import ROUTES from "../config/constants/ROUTES";
+// eslint-disable-next-line import/no-unresolved
+import ROUTES from "@constants/ROUTES";
 
 export const getPreviewString = (stringToFormat, lengthOfPreviewString) =>
   stringToFormat.length > 20

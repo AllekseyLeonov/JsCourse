@@ -12,8 +12,10 @@ import NoteIcon from "@material-ui/icons/Note";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import PropTypes from "prop-types";
 
-import { SORT_PARAMETERS, reorder } from "../../utils/arrayProcessingUtils";
-import { getPreviewString } from "../../utils/textFormatUtils";
+// eslint-disable-next-line import/no-unresolved
+import { SORT_PARAMETERS, reorder } from "@utils/arrayProcessingUtils";
+// eslint-disable-next-line import/no-unresolved
+import { getPreviewString } from "@utils/textFormatUtils";
 import styles, { setItemStyle } from "./styles";
 
 const LENGTH_OF_NOTE_CONTENT_PREVIEW = 20;

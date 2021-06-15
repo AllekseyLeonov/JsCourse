@@ -4,12 +4,15 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+// eslint-disable-next-line import/no-unresolved
+import BodyContainer from "@components/BodyContainer";
+// eslint-disable-next-line import/no-unresolved
+import { getSharedNoteLink } from "@utils/textFormatUtils";
+// eslint-disable-next-line import/no-unresolved
+import { updateSharedNotesArray } from "@utils/arrayProcessingUtils";
 import styles from "./styles";
 import NoteProcessingDialog from "./NoteProcessingDialog";
 import NoteSharingSnackbar from "./NoteSharingSnackbar";
-import BodyContainer from "../../components/BodyContainer";
-import { getSharedNoteLink } from "../../utils/textFormatUtils";
-import { updateSharedNotesArray } from "../../utils/arrayProcessingUtils";
 
 const ActiveNote = ({
   selectedItem,

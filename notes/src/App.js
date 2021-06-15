@@ -3,7 +3,8 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import rootReducer from "./redux/reducer";
+// eslint-disable-next-line import/no-unresolved
+import rootReducer from "@redux/reducer";
 import ApplicationRouter from "./routing";
 
 const store = createStore(rootReducer);

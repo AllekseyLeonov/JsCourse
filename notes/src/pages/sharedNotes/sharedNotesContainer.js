@@ -3,7 +3,8 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { SHARED_NOTES_ARRAY_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
+// eslint-disable-next-line import/no-unresolved
+import { SHARED_NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
 import NotesListMenu from "../notes/NotesListMenu";
 import ActiveNote from "../notes/ActiveNote";
 import styles from "./styles";

@@ -3,7 +3,8 @@ import Snackbar from "@material-ui/core/Snackbar/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert/Alert";
 import PropTypes from "prop-types";
 
-import { getSharedNoteLink } from "../../utils/textFormatUtils";
+// eslint-disable-next-line import/no-unresolved
+import { getSharedNoteLink } from "@utils/textFormatUtils";
 
 const NoteSharingSnackbar = ({
   isSnackbarOpen,

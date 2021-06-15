@@ -6,9 +6,12 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { connect } from "react-redux";
 
-import { notesApi } from "../../config/constants/API_CONFIG";
-import BodyContainer from "../../components/BodyContainer";
-import { updateSharedNotesArray } from "../../utils/arrayProcessingUtils";
+// eslint-disable-next-line import/no-unresolved
+import { notesApi } from "@constants/API_CONFIG";
+// eslint-disable-next-line import/no-unresolved
+import BodyContainer from "@components/BodyContainer";
+// eslint-disable-next-line import/no-unresolved
+import { updateSharedNotesArray } from "@utils/arrayProcessingUtils";
 import styles from "./styles";
 
 const PreviewSharedNote = ({ match, userEmail }) => {

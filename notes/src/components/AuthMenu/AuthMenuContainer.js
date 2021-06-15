@@ -4,10 +4,13 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { useFormik } from "formik";
 
+// eslint-disable-next-line import/no-unresolved
+import { USER_DATA_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+// eslint-disable-next-line import/no-unresolved
+import { userApi } from "@constants/API_CONFIG";
+// eslint-disable-next-line import/no-unresolved
+import { validateAuthInfo } from "@utils/validations";
 import AuthMenu from "./AuthMenu";
-import { USER_DATA_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
-import { userApi } from "../../config/constants/API_CONFIG";
-import { validateAuthInfo } from "../../utils/validations";
 
 const AuthMenuContainer = ({
   email,

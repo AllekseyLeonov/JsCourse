@@ -4,7 +4,8 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import PropTypes from "prop-types";
 
-import { SORT_PARAMETERS } from "../../utils/arrayProcessingUtils";
+// eslint-disable-next-line import/no-unresolved
+import { SORT_PARAMETERS } from "@utils/arrayProcessingUtils";
 import styles from "../styles";
 
 const FilterField = ({ setSortingParameter }) => {

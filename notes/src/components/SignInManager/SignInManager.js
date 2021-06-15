@@ -3,9 +3,10 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+// eslint-disable-next-line import/no-unresolved
+import setSignInState from "@redux/signInState/actions";
 import ProfileInfo from "../ProfileInfo";
 import SignInMenu from "../SignInMenu";
-import setSignInState from "../../redux/signInState/actions";
 
 const SignInManager = ({ isSignIn, setIsSignIn }) =>
   isSignIn ? (

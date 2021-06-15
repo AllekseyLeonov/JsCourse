@@ -4,9 +4,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { Typography } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
-import styles from "../styles";
-import ROUTES from "../../config/constants/ROUTES";
+// eslint-disable-next-line import/no-unresolved
+import ROUTES from "@constants/ROUTES";
 import SignInManager from "../SignInManager";
+import styles from "../styles";
 
 const HeaderMenu = () => {
   const classes = styles();

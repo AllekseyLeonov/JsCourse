@@ -5,17 +5,19 @@ import AddIcon from "@material-ui/icons/Add";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+// eslint-disable-next-line import/no-unresolved
+import SearchField from "@components/SearchField";
+// eslint-disable-next-line import/no-unresolved
+import FilterField from "@components/FilterField";
+// eslint-disable-next-line import/no-unresolved
+import { SORT_PARAMETERS, sortNotesArray } from "@utils/arrayProcessingUtils";
+// eslint-disable-next-line import/no-unresolved
+import { formatDate } from "@utils/textFormatUtils";
+// eslint-disable-next-line import/no-unresolved
+import { NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
 import styles from "./styles";
-import SearchField from "../../components/SearchField";
 import NotesList from "./NotesList";
-import FilterField from "../../components/FilterField";
-import {
-  SORT_PARAMETERS,
-  sortNotesArray,
-} from "../../utils/arrayProcessingUtils";
-import { formatDate } from "../../utils/textFormatUtils";
 import NoteProcessingDialog from "./NoteProcessingDialog";
-import { NOTES_ARRAY_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
 
 const NotesListMenu = ({
   userEmail,

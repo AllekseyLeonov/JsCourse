@@ -7,14 +7,14 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import styles from "../styles";
-
 import {
   setAuthBirthDate,
   setAuthEmail,
   setAuthFirstName,
   setAuthLastName,
-} from "../../redux/auth/actions";
+  // eslint-disable-next-line import/no-unresolved
+} from "@redux/auth/actions";
+import styles from "../styles";
 
 const ProfileInfo = ({
   email,

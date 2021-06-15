@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 
+// eslint-disable-next-line import/no-unresolved
+import { USER_DATA_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+// eslint-disable-next-line import/no-unresolved
+import { validateRegistrationInfo } from "@utils/validations";
 import RegistrationMenu from "./RegistrationMenu";
-import { USER_DATA_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
-import { validateRegistrationInfo } from "../../utils/validations";
 
 const RegistrationMenuContainer = ({
   email,

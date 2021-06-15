@@ -1,5 +1,6 @@
+// eslint-disable-next-line import/no-unresolved
+import { USER_DATA_KEY } from "@constants/LOCAL_STORAGE_KEYS";
 import ACTION_TYPES from "./ACTION_TYPES";
-import { USER_DATA_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
 
 const defaultUserData = {
   email: "",

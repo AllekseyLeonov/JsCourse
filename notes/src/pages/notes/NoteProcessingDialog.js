@@ -8,11 +8,12 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
 
-import styles from "./styles";
 import {
   TITLE_MAX_LENGTH,
   CONTENT_MAX_LENGTH,
-} from "../../config/constants/NOTES";
+  // eslint-disable-next-line import/no-unresolved
+} from "@constants/NOTES";
+import styles from "./styles";
 
 const NoteProcessingDialog = ({
   dialogTitle,

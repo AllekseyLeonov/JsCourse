@@ -3,8 +3,10 @@ import { HashRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import HeaderMenu from "../components/HeaderMenu";
-import ROUTES from "../config/constants/ROUTES";
+// eslint-disable-next-line import/no-unresolved
+import HeaderMenu from "@components/HeaderMenu";
+// eslint-disable-next-line import/no-unresolved
+import ROUTES from "@constants/ROUTES";
 import PrivateRoutes from "./PrivateRoutes";
 import CommonRoutes from "./CommonRoutes";
 

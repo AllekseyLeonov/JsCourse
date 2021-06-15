@@ -1,11 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import NotesContainer from "../pages/notes";
-import ROUTES from "../config/constants/ROUTES";
-import SharedNotesContainer, { PreviewSharedNote } from "../pages/sharedNotes";
-import About from "../pages/about";
-import Error404 from "../pages/errors";
+// eslint-disable-next-line import/no-unresolved
+import ROUTES from "@constants/ROUTES";
+// eslint-disable-next-line import/no-unresolved
+import SharedNotesContainer, { PreviewSharedNote } from "@pages/sharedNotes";
+// eslint-disable-next-line import/no-unresolved
+import About from "@pages/about";
+// eslint-disable-next-line import/no-unresolved
+import Error404 from "@pages/errors";
+// eslint-disable-next-line import/no-unresolved
+import NotesContainer from "@pages/notes";
 
 const PrivateRoutes = () => (
   <Switch>
