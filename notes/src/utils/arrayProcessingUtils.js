@@ -1,3 +1,5 @@
+import { SHARED_NOTES_ARRAY_KEY } from "../config/constants/LOCAL_STORAGE_KEYS";
+
 export const SORT_PARAMETERS = {
   nameAscending: 0,
   nameDescending: 1,
@@ -45,4 +47,24 @@ export const reorder = (list, startIndex, endIndex) => {
   result.splice(endIndex, 0, removed);
 
   return result;
+};
+
+export const updateSharedNotesArray = (noteToUpdate, userWhoShare) => {
+  const currentArrayAsString = localStorage.getItem(SHARED_NOTES_ARRAY_KEY);
+  let currentArray = currentArrayAsString
+    ? JSON.parse(currentArrayAsString)
+    : [];
+  currentArray =
+    currentArray.filter(
+      (data) =>
+        data.userWhoShare === userWhoShare &&
+        noteToUpdate.id === data.note.id &&
+        noteToUpdate.userEmail === data.note.userEmail
+    ).length !== 0
+      ? currentArray
+      : currentArray.concat({
+          userWhoShare,
+          note: noteToUpdate,
+        });
+  localStorage.setItem(SHARED_NOTES_ARRAY_KEY, JSON.stringify(currentArray));
 };

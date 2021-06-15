@@ -1,3 +1,5 @@
+import ROUTES from "../config/constants/ROUTES";
+
 export const getPreviewString = (stringToFormat, lengthOfPreviewString) =>
   stringToFormat.length > 20
     ? `${stringToFormat.substr(0, lengthOfPreviewString)} ...`
@@ -11,4 +13,9 @@ export const formatDate = (date) =>
     date.getMonth() > 10 ? date.getMonth() : `0${date.getMonth()}`
   }.${date.getFullYear()}`;
 
-export const getBaseUrl = () => window.location.href.match(/^.*\//);
+export const getSharedNoteLink = (email, id) => {
+  const baseUrl = window.location.href.match(/^.*\//)[0];
+  return `${
+    baseUrl.substring(0, baseUrl.length - 1) + ROUTES.sharedNotes
+  }/${email}/${id}`;
+};

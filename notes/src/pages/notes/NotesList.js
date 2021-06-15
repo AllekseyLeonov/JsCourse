@@ -62,7 +62,7 @@ const NotesList = ({
             <List style={{ maxHeight: "400px", overflow: "auto" }}>
               {notesArray.map((item, index) => (
                 <Draggable
-                  key={item.id}
+                  key={item.userEmail + item.id}
                   draggableId={item.id.toString()}
                   index={index}
                 >

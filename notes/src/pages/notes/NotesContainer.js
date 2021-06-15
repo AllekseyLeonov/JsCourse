@@ -45,7 +45,12 @@ const NotesContainer = () => {
           }
           setNotesArray={setNotesArray}
         />
-        <ActiveNote item selectedItem={selectedNote} updateNote={updateNote} />
+        <ActiveNote
+          item
+          selectedItem={selectedNote}
+          updateNote={updateNote}
+          isOnSharedNotes={false}
+        />
       </Grid>
     </div>
   );

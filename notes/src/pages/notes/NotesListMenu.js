@@ -23,6 +23,7 @@ const NotesListMenu = ({
   selectedIndex,
   changeSelectedIndex,
   setNotesArray,
+  isOnSharedNotes,
 }) => {
   const [filteredArray, setFilteredArray] = useState(notesArray);
   const [sortingParameter, setSortingParameter] = useState(
@@ -55,22 +56,28 @@ const NotesListMenu = ({
       <FilterField setSortingParameter={setSortingParameter} />
       <NotesList
         notesArray={sortNotesArray(filteredArray, sortingParameter).filter(
-          (note) => note.userEmail === "" || note.userEmail === userEmail
+          !isOnSharedNotes
+            ? (note) => note.userEmail === "" || note.userEmail === userEmail
+            : (note) => note.userEmail !== "" && note.title !== ""
         )}
         selectedIndex={selectedIndex}
         setSelectedIndex={changeSelectedIndex}
         setFilteredArray={setFilteredArray}
         setSortingParameter={setSortingParameter}
       />
-      <Button
-        style={{
-          backgroundColor: "rgba(196, 116, 69, 0.7)",
-          color: "white",
-        }}
-        onClick={() => setDialogState(!isDialogOpen)}
-      >
-        <AddIcon />
-      </Button>
+      {!isOnSharedNotes ? (
+        <Button
+          style={{
+            backgroundColor: "rgba(196, 116, 69, 0.7)",
+            color: "white",
+          }}
+          onClick={() => setDialogState(!isDialogOpen)}
+        >
+          <AddIcon />
+        </Button>
+      ) : (
+        <div />
+      )}
       <NoteProcessingDialog
         dialogTitle="Adding note"
         setOpen={setDialogState}
@@ -93,6 +100,7 @@ NotesListMenu.propTypes = {
   selectedIndex: PropTypes.number,
   changeSelectedIndex: PropTypes.func,
   setNotesArray: PropTypes.func,
+  isOnSharedNotes: PropTypes.bool,
 };
 
 NotesListMenu.defaultProps = {
@@ -101,6 +109,7 @@ NotesListMenu.defaultProps = {
   selectedIndex: null,
   changeSelectedIndex: () => {},
   setNotesArray: () => {},
+  isOnSharedNotes: false,
 };
 
 export default connect(setStateToProps)(NotesListMenu);

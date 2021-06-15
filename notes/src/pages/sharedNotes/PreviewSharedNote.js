@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import { useQuery } from "react-query";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
 
 import { notesApi } from "../../config/constants/API_CONFIG";
 import BodyContainer from "../../components/BodyContainer";
+import { updateSharedNotesArray } from "../../utils/arrayProcessingUtils";
 
-const PreviewSharedNote = ({ match }) => {
+const PreviewSharedNote = ({ match, userEmail }) => {
   const [sharedNote, setSharedNote] = useState({ title: "", content: "" });
 
   const { data } = useQuery("notes", () => axios(notesApi), {
     onSuccess: () => {
-      setSharedNote(
-        data.data.find(
+      setSharedNote(() => {
+        const newNote = data.data.filter(
           (note) =>
             note.userEmail === match.params.userEmail &&
             note.id === match.params.noteId
-        )
-      );
+        )[0];
+        newNote.id = Number(newNote.id);
+        return newNote;
+      });
     },
   });
 
@@ -28,7 +32,11 @@ const PreviewSharedNote = ({ match }) => {
       <Grid container direction="column" alignItems="center">
         <Typography variant="h3">{sharedNote.title}</Typography>
         <Typography variant="h5">{sharedNote.content}</Typography>
-        <Button variant="contained" style={{ marginTop: "20px" }}>
+        <Button
+          variant="contained"
+          style={{ marginTop: "20px" }}
+          onClick={updateSharedNotesArray(sharedNote, userEmail)}
+        >
           Add to shared notes
         </Button>
       </Grid>
@@ -47,10 +55,16 @@ PreviewSharedNote.propTypes = {
       noteId: PropTypes.string,
     }),
   }),
+  userEmail: PropTypes.string,
 };
 
 PreviewSharedNote.defaultProps = {
   match: null,
+  userEmail: "",
 };
 
-export default PreviewSharedNote;
+const setStateToProps = (state) => ({
+  userEmail: state.auth.email,
+});
+
+export default connect(setStateToProps)(PreviewSharedNote);

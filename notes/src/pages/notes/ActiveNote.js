@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import "./styles.css";
 import NoteProcessingDialog from "./NoteProcessingDialog";
+import NoteSharingSnackbar from "./NoteSharingSnackbar";
 import BodyContainer from "../../components/BodyContainer";
+import { getSharedNoteLink } from "../../utils/textFormatUtils";
+import { updateSharedNotesArray } from "../../utils/arrayProcessingUtils";
 
-const ActiveNote = ({ selectedItem, updateNote }) => {
+const ActiveNote = ({
+  selectedItem,
+  updateNote,
+  userEmail,
+  isOnSharedNotes,
+}) => {
   const [isDialogOpen, setDialogState] = useState(false);
+  const [isSnackbarOpen, setSnackbarState] = useState(false);
 
   return selectedItem ? (
     <BodyContainer>
@@ -20,12 +30,43 @@ const ActiveNote = ({ selectedItem, updateNote }) => {
           {selectedItem.content}
         </Typography>
       </Grid>
-      <Button
-        onClick={() => setDialogState(!isDialogOpen)}
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
-      >
-        Edit
-      </Button>
+      {!isOnSharedNotes ? (
+        <Grid direction="column">
+          <Button
+            onClick={() => setDialogState(!isDialogOpen)}
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              margin: "10px 10px",
+            }}
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => {
+              navigator.clipboard.writeText(
+                getSharedNoteLink(userEmail, selectedItem.id)
+              );
+              updateSharedNotesArray(selectedItem, userEmail);
+              setSnackbarState(true);
+            }}
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              margin: "10px 10px",
+            }}
+          >
+            Share
+          </Button>
+        </Grid>
+      ) : (
+        <div />
+      )}
+
+      <NoteSharingSnackbar
+        isSnackbarOpen={isSnackbarOpen}
+        userEmail={userEmail}
+        id={selectedItem.id}
+        setSnackbarState={setSnackbarState}
+      />
       <NoteProcessingDialog
         dialogTitle="Editing note"
         noteTitle={selectedItem.title}
@@ -51,11 +92,19 @@ ActiveNote.propTypes = {
     userEmail: PropTypes.string,
   }),
   updateNote: PropTypes.func,
+  userEmail: PropTypes.string,
+  isOnSharedNotes: PropTypes.bool,
 };
 
 ActiveNote.defaultProps = {
   selectedItem: null,
   updateNote: () => {},
+  userEmail: "",
+  isOnSharedNotes: false,
 };
 
-export default ActiveNote;
+const setStateToProps = (state) => ({
+  userEmail: state.auth.email,
+});
+
+export default connect(setStateToProps)(ActiveNote);
