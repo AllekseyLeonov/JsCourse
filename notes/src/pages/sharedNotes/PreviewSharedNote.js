@@ -2,34 +2,32 @@ import React, { useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
-import { useQuery } from "react-query";
-import axios from "axios";
 import { connect } from "react-redux";
 
-// eslint-disable-next-line import/no-unresolved
-import { notesApi } from "@constants/API_CONFIG";
 // eslint-disable-next-line import/no-unresolved
 import BodyContainer from "@components/BodyContainer";
 // eslint-disable-next-line import/no-unresolved
 import { updateSharedNotesArray } from "@utils/arrayProcessingUtils";
+// eslint-disable-next-line import/no-unresolved
+import { useGetNotes } from "@constants/API_CONFIG";
 import styles from "./styles";
 
 const PreviewSharedNote = ({ match, userEmail }) => {
   const [sharedNote, setSharedNote] = useState({ title: "", content: "" });
 
-  const { data } = useQuery("notes", () => axios(notesApi), {
-    onSuccess: () => {
-      setSharedNote(() => {
-        const newNote = data.data.filter(
-          (note) =>
-            note.userEmail === match.params.userEmail &&
-            note.id === match.params.noteId
-        )[0];
-        newNote.id = Number(newNote.id);
-        return newNote;
-      });
-    },
-  });
+  const onResponseSuccess = (data) => {
+    setSharedNote(() => {
+      const newNote = data.data.filter(
+        (note) =>
+          note.userEmail === match.params.userEmail &&
+          note.id === match.params.noteId
+      )[0];
+      newNote.id = Number(newNote.id);
+      return newNote;
+    });
+  };
+
+  useGetNotes(onResponseSuccess);
 
   const classes = styles();
 

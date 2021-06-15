@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useQuery } from "react-query";
-import axios from "axios";
 import { useFormik } from "formik";
 
 // eslint-disable-next-line import/no-unresolved
 import { USER_DATA_KEY } from "@constants/LOCAL_STORAGE_KEYS";
 // eslint-disable-next-line import/no-unresolved
-import { userApi } from "@constants/API_CONFIG";
+import { useGetUser } from "@constants/API_CONFIG";
 // eslint-disable-next-line import/no-unresolved
 import { validateAuthInfo } from "@utils/validations";
 import AuthMenu from "./AuthMenu";
@@ -21,7 +19,7 @@ const AuthMenuContainer = ({
   setIsAuthorised,
   setIsOnRegistrationProcess,
 }) => {
-  const { data } = useQuery("users", () => axios(userApi));
+  const { data: user } = useGetUser();
 
   const formik = useFormik({
     initialValues: {
@@ -29,20 +27,21 @@ const AuthMenuContainer = ({
       password: "",
     },
 
-    validate: (values) => validateAuthInfo(values, data),
+    validate: (values) => validateAuthInfo(values, user),
 
     onSubmit: (values, actions) => {
-      const userData = data.data.filter(
-        (user) =>
-          user.email === values.email && user.password === values.password
+      const currentUserData = user.data.filter(
+        (userData) =>
+          userData.email === values.email &&
+          userData.password === values.password
       )[0];
 
-      setEmail(userData.email);
-      setFirstName(userData.firstName);
-      setLastName(userData.lastName);
-      setDateOfBirth(userData.dateOfBirth);
+      setEmail(currentUserData.email);
+      setFirstName(currentUserData.firstName);
+      setLastName(currentUserData.lastName);
+      setDateOfBirth(currentUserData.dateOfBirth);
 
-      localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
+      localStorage.setItem(USER_DATA_KEY, JSON.stringify(currentUserData));
 
       setIsAuthorised(true);
       actions.setSubmitting(false);
