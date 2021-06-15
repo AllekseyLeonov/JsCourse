@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
 
-import "./styles.css";
+import styles from "./styles";
 import {
   TITLE_MAX_LENGTH,
   CONTENT_MAX_LENGTH,
@@ -45,6 +45,7 @@ const NoteProcessingDialog = ({
     onSubmit(textFieldTitle, textFieldContent);
     setOpen(false);
   };
+  const classes = styles();
 
   return (
     <Dialog open={isOpen} fullWidth="true" maxWidth="false">
@@ -54,7 +55,7 @@ const NoteProcessingDialog = ({
           <TextField
             id="editTitleField"
             error={!isTitleCorrect}
-            className="DialogInputField"
+            style={styles.DialogInputField}
             label="title"
             defaultValue={textFieldTitle}
             onChange={handleTitleFieldChange}
@@ -66,7 +67,7 @@ const NoteProcessingDialog = ({
           />
           <TextField
             error={!isContentCorrect}
-            className="DialogInputField"
+            className={classes.DialogInputField}
             label="content"
             defaultValue={textFieldContent}
             onChange={handleContentFieldChange}

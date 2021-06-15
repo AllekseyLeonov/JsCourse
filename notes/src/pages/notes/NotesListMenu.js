@@ -5,7 +5,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import "./styles.css";
+import styles from "./styles";
 import SearchField from "../../components/SearchField";
 import NotesList from "./NotesList";
 import FilterField from "../../components/FilterField";
@@ -50,8 +50,16 @@ const NotesListMenu = ({
     setNotesArray(notesArray.concat(newNote));
   };
 
+  const classes = styles();
+
   return (
-    <Grid className="NotesListMenu" container item xs={3} direction="column">
+    <Grid
+      className={classes.NotesListMenu}
+      container
+      item
+      xs={3}
+      direction="column"
+    >
       <SearchField array={notesArray} setArray={setFilteredArray} />
       <FilterField setSortingParameter={setSortingParameter} />
       <NotesList
@@ -67,10 +75,7 @@ const NotesListMenu = ({
       />
       {!isOnSharedNotes ? (
         <Button
-          style={{
-            backgroundColor: "rgba(196, 116, 69, 0.7)",
-            color: "white",
-          }}
+          className={classes.NotesButtons}
           onClick={() => setDialogState(!isDialogOpen)}
         >
           <AddIcon />

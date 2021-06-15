@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { notesApi } from "../../config/constants/API_CONFIG";
 import BodyContainer from "../../components/BodyContainer";
 import { updateSharedNotesArray } from "../../utils/arrayProcessingUtils";
+import styles from "./styles";
 
 const PreviewSharedNote = ({ match, userEmail }) => {
   const [sharedNote, setSharedNote] = useState({ title: "", content: "" });
@@ -27,6 +28,8 @@ const PreviewSharedNote = ({ match, userEmail }) => {
     },
   });
 
+  const classes = styles();
+
   return sharedNote ? (
     <BodyContainer>
       <Grid container direction="column" alignItems="center">
@@ -34,7 +37,7 @@ const PreviewSharedNote = ({ match, userEmail }) => {
         <Typography variant="h5">{sharedNote.content}</Typography>
         <Button
           variant="contained"
-          style={{ marginTop: "20px" }}
+          className={classes.AddNoteButton}
           onClick={updateSharedNotesArray(sharedNote, userEmail)}
         >
           Add to shared notes

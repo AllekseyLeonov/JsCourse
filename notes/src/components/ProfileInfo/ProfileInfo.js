@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import "../styles.css";
+import styles from "../styles";
 
 import {
   setAuthBirthDate,
@@ -32,10 +32,12 @@ const ProfileInfo = ({
     setAnchorEl(null);
   };
 
+  const classes = styles();
+
   return (
-    <Box className="SignButtonBox">
+    <Box className={classes.SignButtonBox}>
       <Button onClick={handleClick}>
-        <Typography variant="h5" className="SignButton">
+        <Typography variant="h5" className={classes.SignButton}>
           Profile
         </Typography>
       </Button>
@@ -45,26 +47,24 @@ const ProfileInfo = ({
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Box className="Menu">
-          <AccountCircleIcon className="ProfileIcon MenuItem CenteredMenuItem" />
-          <Typography variant="h5" className="MenuItem">
+        <Box className={classes.Menu}>
+          <AccountCircleIcon
+            className={`${classes.ProfileIcon} ${classes.MenuItem} ${classes.CenteredMenuItem}`}
+          />
+          <Typography variant="h5" className={classes.MenuItem}>
             Mail: {email}
           </Typography>
-          <Typography variant="h5" className="MenuItem">
+          <Typography variant="h5" className={classes.MenuItem}>
             Name: {firstName}
           </Typography>
-          <Typography variant="h5" className="MenuItem">
+          <Typography variant="h5" className={classes.MenuItem}>
             Surname: {lastName}
           </Typography>
-          <Typography variant="h5" className="MenuItem">
+          <Typography variant="h5" className={classes.MenuItem}>
             Date of birth: {dateOfBirth}
           </Typography>
           <Button
-            className="MenuItem CenteredMenuItem"
-            style={{
-              backgroundColor: "rgba(196, 116, 69, 0.7)",
-              color: "white",
-            }}
+            className={`${classes.NotesButtons} ${classes.MenuItem} ${classes.CenteredMenuItem}`}
             variant="contained"
             onClick={() => setIsAuthorised(false)}
           >

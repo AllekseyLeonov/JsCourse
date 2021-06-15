@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import "./styles.css";
+import styles from "./styles";
 import NoteProcessingDialog from "./NoteProcessingDialog";
 import NoteSharingSnackbar from "./NoteSharingSnackbar";
 import BodyContainer from "../../components/BodyContainer";
@@ -19,14 +19,15 @@ const ActiveNote = ({
 }) => {
   const [isDialogOpen, setDialogState] = useState(false);
   const [isSnackbarOpen, setSnackbarState] = useState(false);
+  const classes = styles();
 
   return selectedItem ? (
     <BodyContainer>
       <Grid container direction="column" alignItems="center">
-        <Typography className="ActiveNoteTitle" variant="h3">
+        <Typography className={classes.ActiveNoteTitle} variant="h3">
           {selectedItem.title}
         </Typography>
-        <Typography className="ActiveNoteContent" variant="h5">
+        <Typography className={classes.ActiveNoteContent} variant="h5">
           {selectedItem.content}
         </Typography>
       </Grid>
@@ -34,10 +35,7 @@ const ActiveNote = ({
         <Grid direction="column">
           <Button
             onClick={() => setDialogState(!isDialogOpen)}
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.7)",
-              margin: "10px 10px",
-            }}
+            className={`${classes.ActiveNoteContent} ${classes.NotesButtons} ${classes.WithMargin}`}
           >
             Edit
           </Button>
@@ -49,10 +47,7 @@ const ActiveNote = ({
               updateSharedNotesArray(selectedItem, userEmail);
               setSnackbarState(true);
             }}
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.7)",
-              margin: "10px 10px",
-            }}
+            className={`${classes.ActiveNoteContent} ${classes.NotesButtons} ${classes.WithMargin}`}
           >
             Share
           </Button>

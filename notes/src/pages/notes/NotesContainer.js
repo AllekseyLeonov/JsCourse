@@ -5,7 +5,7 @@ import NotesListMenu from "./NotesListMenu";
 import ActiveNote from "./ActiveNote";
 import NOTES from "../../config/constants/NOTES";
 import { NOTES_ARRAY_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
-import "./styles.css";
+import styles from "./styles";
 
 const NotesContainer = () => {
   const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
@@ -34,8 +34,10 @@ const NotesContainer = () => {
     localStorage.setItem(NOTES_ARRAY_KEY, JSON.stringify(updatedArray));
   };
 
+  const classes = styles();
+
   return (
-    <div className="NotesContainer">
+    <div className={classes.NotesContainer}>
       <Grid container direction="row" wrap="nowrap" justify="space-between">
         <NotesListMenu
           notesArray={notesArray}

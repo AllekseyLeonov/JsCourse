@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { SHARED_NOTES_ARRAY_KEY } from "../../config/constants/LOCAL_STORAGE_KEYS";
 import NotesListMenu from "../notes/NotesListMenu";
 import ActiveNote from "../notes/ActiveNote";
+import styles from "./styles";
 
 const SharedNotesContainer = ({ userEmail }) => {
   const loadedNotesAsString = localStorage.getItem(SHARED_NOTES_ARRAY_KEY);
@@ -20,8 +21,10 @@ const SharedNotesContainer = ({ userEmail }) => {
 
   const [selectedNote, setSelectedNote] = useState(null);
 
+  const classes = styles();
+
   return (
-    <div className="NotesContainer">
+    <div className={classes.NotesContainer}>
       <Grid container direction="row" wrap="nowrap" justify="space-between">
         <NotesListMenu
           notesArray={notesArray}

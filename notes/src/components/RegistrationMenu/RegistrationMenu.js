@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { Menu, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import "../styles.css";
+import styles from "../styles";
 
 const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -17,10 +17,12 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
     setAnchorEl(null);
   };
 
+  const classes = styles();
+
   return (
-    <div className="SignButtonBox">
+    <div className={classes.SignButtonBox}>
       <Button onClick={handleClick}>
-        <Typography variant="h5" className="SignButton">
+        <Typography variant="h5" className={classes.SignButton}>
           Registration
         </Typography>
       </Button>
@@ -31,23 +33,17 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <div className="Menu" style={{ width: "300px" }}>
+        <div className={`${classes.Menu} ${classes.RegistrationMenu}`}>
           <h1
-            className="CenteredMenuItem"
-            style={{ color: "rgb(196, 116, 69)" }}
+            className={`${classes.CenteredMenuItem} ${classes.RegistrationMenuTitle}`}
           >
             Registration
           </h1>
           <form
             onSubmit={formik.handleSubmit}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              width: "100%",
-            }}
+            className={classes.RegistrationMenuForm}
           >
-            <div className="MenuItem">
+            <div className={classes.MenuItem}>
               <TextField
                 id="email"
                 name="email"
@@ -57,10 +53,9 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
                 onChange={formik.handleChange}
                 error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
-                style={{ width: "100%" }}
               />
             </div>
-            <div className="MenuItem">
+            <div className={classes.MenuItem}>
               <TextField
                 name="firstName"
                 label="First name"
@@ -70,10 +65,9 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
                   formik.touched.firstName && Boolean(formik.errors.firstName)
                 }
                 helperText={formik.touched.firstName && formik.errors.firstName}
-                style={{ width: "100%" }}
               />
             </div>
-            <div className="MenuItem">
+            <div className={classes.MenuItem}>
               <TextField
                 name="lastName"
                 label="Last name"
@@ -83,10 +77,9 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
                   formik.touched.lastName && Boolean(formik.errors.lastName)
                 }
                 helperText={formik.touched.lastName && formik.errors.lastName}
-                style={{ width: "100%" }}
               />
             </div>
-            <div className="MenuItem" style={{ width: "100%" }}>
+            <div className={classes.MenuItem}>
               <TextField
                 name="dateOfBirth"
                 label="Date of birth"
@@ -103,11 +96,10 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
                 helperText={
                   formik.touched.dateOfBirth && formik.errors.dateOfBirth
                 }
-                style={{ width: "100%" }}
                 autoFocus
               />
             </div>
-            <div className="MenuItem">
+            <div className={classes.MenuItem}>
               <TextField
                 name="password"
                 label="Password"
@@ -118,10 +110,9 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
                   formik.touched.password && Boolean(formik.errors.password)
                 }
                 helperText={formik.touched.password && formik.errors.password}
-                style={{ width: "100%" }}
               />
             </div>
-            <div className="MenuItem">
+            <div className={classes.MenuItem}>
               <TextField
                 name="confirmPassword"
                 label="Confirm password"
@@ -136,27 +127,20 @@ const RegistrationMenu = ({ formik, setIsOnRegistrationProcess }) => {
                   formik.touched.confirmPassword &&
                   formik.errors.confirmPassword
                 }
-                style={{ width: "100%" }}
               />
             </div>
-            <div className="CenteredMenuItem" style={{ padding: "5px 0" }}>
+            <div className={classes.CenteredMenuItem}>
               <Button
-                style={{
-                  backgroundColor: "rgba(196, 116, 69, 0.7)",
-                  color: "white",
-                }}
+                className={classes.NotesButtons}
                 variant="contained"
                 type="submit"
               >
                 Submit
               </Button>
             </div>
-            <div className="CenteredMenuItem" style={{ padding: "5px 0" }}>
+            <div className={classes.CenteredMenuItem}>
               <Button
-                style={{
-                  backgroundColor: "rgba(196, 116, 69, 0.7)",
-                  color: "white",
-                }}
+                className={classes.NotesButtons}
                 variant="contained"
                 onClick={() => setIsOnRegistrationProcess(false)}
               >

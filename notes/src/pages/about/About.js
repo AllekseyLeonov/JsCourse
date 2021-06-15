@@ -5,7 +5,7 @@ import BodyContainer from "../../components/BodyContainer";
 
 const About = () => (
   <BodyContainer>
-    <Typography variant="h1">There will be About page</Typography>
+    <Typography variant="h1">Created by A.A.Leonov</Typography>
   </BodyContainer>
 );
 

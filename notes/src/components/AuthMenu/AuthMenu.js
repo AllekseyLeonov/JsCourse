@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { Menu, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import "../styles.css";
+import styles from "../styles";
 
 const AuthMenu = ({ formik, setIsOnRegistrationProcess }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -16,10 +16,12 @@ const AuthMenu = ({ formik, setIsOnRegistrationProcess }) => {
     setAnchorEl(null);
   };
 
+  const classes = styles();
+
   return (
-    <div className="SignButtonBox">
+    <div className={classes.SignButtonBox}>
       <Button onClick={handleClick}>
-        <Typography variant="h5" className="SignButton">
+        <Typography variant="h5" className={classes.SignButton}>
           Log in
         </Typography>
       </Button>
@@ -30,9 +32,9 @@ const AuthMenu = ({ formik, setIsOnRegistrationProcess }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <div className="Menu">
+        <div className={classes.Menu}>
           <h1
-            className="CenteredMenuItem"
+            className={classes.CenteredMenuItem}
             style={{ color: "rgb(196, 116, 69)" }}
           >
             Sign in
@@ -45,7 +47,7 @@ const AuthMenu = ({ formik, setIsOnRegistrationProcess }) => {
               wrap: "nowrap",
             }}
           >
-            <div className="MenuItem">
+            <div className={classes.MenuItem}>
               <TextField
                 id="email"
                 name="email"
@@ -57,7 +59,7 @@ const AuthMenu = ({ formik, setIsOnRegistrationProcess }) => {
                 helperText={formik.touched.email && formik.errors.email}
               />
             </div>
-            <div className="MenuItem">
+            <div className={classes.MenuItem}>
               <TextField
                 name="password"
                 label="Password"
@@ -70,24 +72,18 @@ const AuthMenu = ({ formik, setIsOnRegistrationProcess }) => {
                 helperText={formik.touched.password && formik.errors.password}
               />
             </div>
-            <div className="CenteredMenuItem" style={{ padding: "5px 0" }}>
+            <div className={classes.CenteredMenuItem}>
               <Button
-                style={{
-                  backgroundColor: "rgba(196, 116, 69, 0.7)",
-                  color: "white",
-                }}
+                className={classes.NotesButton}
                 variant="contained"
                 type="submit"
               >
                 Submit
               </Button>
             </div>
-            <div className="CenteredMenuItem" style={{ padding: "5px 0" }}>
+            <div className={classes.CenteredMenuItem}>
               <Button
-                style={{
-                  backgroundColor: "rgba(196, 116, 69, 0.7)",
-                  color: "white",
-                }}
+                className={classes.NotesButton}
                 variant="contained"
                 onClick={() => setIsOnRegistrationProcess(true)}
               >

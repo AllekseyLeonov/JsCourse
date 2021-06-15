@@ -14,25 +14,9 @@ import PropTypes from "prop-types";
 
 import { SORT_PARAMETERS, reorder } from "../../utils/arrayProcessingUtils";
 import { getPreviewString } from "../../utils/textFormatUtils";
+import styles, { setItemStyle } from "./styles";
 
 const LENGTH_OF_NOTE_CONTENT_PREVIEW = 20;
-const DEFAULT_NOTES_COLOR = "rgba(255, 255, 0, 0.3)";
-const CUSTOM_NOTES_COLOR = "rgba(0, 255, 0, 0.3)";
-
-const setItemStyle = (isDragging, draggableStyle, item) => ({
-  ...draggableStyle,
-  ...((isDragging && {
-    background: "rgba(0, 0, 255, 0.3)",
-  }) ||
-    (!isDragging &&
-      (item.userEmail === ""
-        ? {
-            background: DEFAULT_NOTES_COLOR,
-          }
-        : {
-            background: CUSTOM_NOTES_COLOR,
-          }))),
-});
 
 const NotesList = ({
   notesArray,
@@ -54,12 +38,15 @@ const NotesList = ({
     setSortingParameter(SORT_PARAMETERS.none);
     setFilteredArray(items);
   };
+
+  const classes = styles();
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable">
         {(droppableProvided) => (
           <RootRef rootRef={droppableProvided.innerRef}>
-            <List style={{ maxHeight: "400px", overflow: "auto" }}>
+            <List className={classes.NotesList}>
               {notesArray.map((item, index) => (
                 <Draggable
                   key={item.userEmail + item.id}
