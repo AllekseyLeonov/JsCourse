@@ -34,7 +34,7 @@ const ActiveNote = ({
           {selectedItem.content}
         </Typography>
       </Grid>
-      {!isOnSharedNotes ? (
+      {!isOnSharedNotes && selectedItem.userEmail !== "" ? (
         <Grid direction="column">
           <Button
             onClick={() => setDialogState(!isDialogOpen)}
