@@ -10,6 +10,7 @@ module.exports = {
       "@constants": path.resolve(__dirname, "src/config/constants"),
       "@routing": path.resolve(__dirname, "src/routing/"),
       "@utils": path.resolve(__dirname, "src/utils/"),
+      "@api": path.resolve(__dirname, "src/config/api/"),
     },
   },
 };

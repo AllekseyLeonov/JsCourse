@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 // eslint-disable-next-line import/no-unresolved
 import HeaderMenu from "@components/HeaderMenu";
 // eslint-disable-next-line import/no-unresolved
-import ROUTES from "@constants/ROUTES";
+import ROUTES from "@constants/routes";
 import PrivateRoutes from "./PrivateRoutes";
 import CommonRoutes from "./CommonRoutes";
 

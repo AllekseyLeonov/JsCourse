@@ -12,7 +12,7 @@ import {
   TITLE_MAX_LENGTH,
   CONTENT_MAX_LENGTH,
   // eslint-disable-next-line import/no-unresolved
-} from "@constants/NOTES";
+} from "@constants/notesArray";
 import {
   checkIsContentCorrect,
   checkIsTitleCorrect,

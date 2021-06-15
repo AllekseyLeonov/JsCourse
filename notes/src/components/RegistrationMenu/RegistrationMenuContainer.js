@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 
 // eslint-disable-next-line import/no-unresolved
-import { USER_DATA_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+import { USER_DATA_KEY } from "@constants/localStorageKeys";
 // eslint-disable-next-line import/no-unresolved
 import { validateRegistrationInfo } from "@utils/validations";
 import RegistrationMenu from "./RegistrationMenu";

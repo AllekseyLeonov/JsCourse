@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
 import setSignInState from "@redux/signInState/actions";
-import ProfileInfo from "../ProfileInfo";
+import ProfileInfoContainer from "../ProfileInfo";
 import SignInMenu from "../SignInMenu";
 
 const SignInManager = ({ isSignIn, setIsSignIn }) =>
   isSignIn ? (
-    <ProfileInfo setIsAuthorised={setIsSignIn} />
+    <ProfileInfoContainer setIsAuthorised={setIsSignIn} />
   ) : (
     <SignInMenu setIsAuthorised={setIsSignIn} />
   );

@@ -9,7 +9,7 @@ import BodyContainer from "@components/BodyContainer";
 // eslint-disable-next-line import/no-unresolved
 import { updateSharedNotesArray } from "@utils/arrayProcessingUtils";
 // eslint-disable-next-line import/no-unresolved
-import { useGetNotes } from "@constants/API_CONFIG";
+import { useGetNotes } from "@api/api";
 import styles from "./styles";
 
 const PreviewSharedNote = ({ match, userEmail }) => {

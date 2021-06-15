@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { SHARED_NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+import { SHARED_NOTES_ARRAY_KEY } from "@constants/localStorageKeys";
 
 export const SORT_PARAMETERS = {
   nameAscending: 0,

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { useFormik } from "formik";
 
 // eslint-disable-next-line import/no-unresolved
-import { USER_DATA_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+import { USER_DATA_KEY } from "@constants/localStorageKeys";
 // eslint-disable-next-line import/no-unresolved
-import { useGetUser } from "@constants/API_CONFIG";
+import { useGetUser } from "@api/api";
 // eslint-disable-next-line import/no-unresolved
 import { validateAuthInfo } from "@utils/validations";
 import AuthMenu from "./AuthMenu";

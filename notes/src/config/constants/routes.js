@@ -1,4 +1,4 @@
-const ROUTES = {
+const Routes = {
   root: "/",
   notes: "/notes",
   sharedNotes: "/shared-notes",
@@ -6,4 +6,4 @@ const ROUTES = {
   about: "/about",
 };
 
-export default ROUTES;
+export default Routes;

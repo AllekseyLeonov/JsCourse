@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 // eslint-disable-next-line import/no-unresolved
-import NOTES from "@constants/NOTES";
+import NOTES from "@constants/notesArray";
 // eslint-disable-next-line import/no-unresolved
-import { NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+import { NOTES_ARRAY_KEY } from "@constants/localStorageKeys";
 import styles from "./styles";
 import NotesListMenuContainer from "./NotesListMenuContainer";
 import ActiveNoteContainer from "./ActiveNoteContainer";

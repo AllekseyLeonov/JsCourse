@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 // eslint-disable-next-line import/no-unresolved
-import ROUTES from "@constants/ROUTES";
+import ROUTES from "@constants/routes";
 // eslint-disable-next-line import/no-unresolved
 import SharedNotesContainer, { PreviewSharedNote } from "@pages/sharedNotes";
 // eslint-disable-next-line import/no-unresolved

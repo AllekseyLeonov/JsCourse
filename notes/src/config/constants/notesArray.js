@@ -1,7 +1,7 @@
 export const TITLE_MAX_LENGTH = 35;
 export const CONTENT_MAX_LENGTH = 2000;
 
-const NOTES = [
+const NotesArray = [
   {
     id: 0,
     title: "React",
@@ -51,4 +51,4 @@ const NOTES = [
   },
 ];
 
-export default NOTES;
+export default NotesArray;

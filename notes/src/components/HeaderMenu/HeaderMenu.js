@@ -5,7 +5,7 @@ import { Typography } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
 // eslint-disable-next-line import/no-unresolved
-import ROUTES from "@constants/ROUTES";
+import Routes from "@constants/routes";
 import SignInManager from "../SignInManager";
 import styles from "../styles";
 
@@ -16,7 +16,7 @@ const HeaderMenu = () => {
       <Toolbar className={classes.HeaderMenuToolBar}>
         <Typography variant="h5" className={classes.HeaderItem}>
           <NavLink
-            to={ROUTES.notes}
+            to={Routes.notes}
             activeClassName={classes.ActiveNavLink}
             className={classes.NavLink}
           >
@@ -25,7 +25,7 @@ const HeaderMenu = () => {
         </Typography>
         <Typography variant="h5" className={classes.HeaderItem}>
           <NavLink
-            to={ROUTES.sharedNotes}
+            to={Routes.sharedNotes}
             activeClassName={classes.ActiveNavLink}
             className={classes.NavLink}
           >
@@ -34,7 +34,7 @@ const HeaderMenu = () => {
         </Typography>
         <Typography variant="h5" className={classes.HeaderItem}>
           <NavLink
-            to={ROUTES.about}
+            to={Routes.about}
             activeClassName={classes.ActiveNavLink}
             className={classes.NavLink}
           >

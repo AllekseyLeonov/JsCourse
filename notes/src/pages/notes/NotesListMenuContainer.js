@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 // eslint-disable-next-line import/no-unresolved
-import { NOTES_ARRAY_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+import { NOTES_ARRAY_KEY } from "@constants/localStorageKeys";
 // eslint-disable-next-line import/no-unresolved
 import { formatDate } from "@utils/textFormatUtils";
 // eslint-disable-next-line import/no-unresolved

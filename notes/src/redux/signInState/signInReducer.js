@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { USER_DATA_KEY } from "@constants/LOCAL_STORAGE_KEYS";
+import { USER_DATA_KEY } from "@constants/localStorageKeys";
 import ACTION_TYPES from "./ACTION_TYPES";
 
 const defaultState = {
