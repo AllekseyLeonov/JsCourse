@@ -16,7 +16,7 @@ export const getYearFromDate = (date) => date.substring(0, YEAR_STRING_LENGTH);
 
 export const formatDate = (date) =>
   `${date.getDate() > 10 ? date.getDate() : `0${date.getDate()}`}.${
-    date.getMonth() > 10 ? date.getMonth() : `0${date.getMonth()}`
+    date.getMonth() + 1 > 10 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`
   }.${date.getFullYear()}`;
 
 export const getSharedNoteLink = (email, id) => {
