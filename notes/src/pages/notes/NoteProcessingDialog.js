@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Grid } from "@material-ui/core";
@@ -8,28 +8,32 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import PropTypes from "prop-types";
 
-import "./styles.css";
+import {
+  TITLE_MAX_LENGTH,
+  CONTENT_MAX_LENGTH,
+  // eslint-disable-next-line import/no-unresolved
+} from "@constants/notesArray";
+import {
+  checkIsContentCorrect,
+  checkIsTitleCorrect,
+  // eslint-disable-next-line import/no-unresolved
+} from "@utils/textFormatUtils";
+import styles from "./styles";
 
-const TITLE_MAX_LENGTH = 35;
-const CONTENT_MAX_LENGTH = 2000;
-
-const ActiveNoteEditingDialog = ({
+const NoteProcessingDialog = ({
+  dialogTitle,
   noteTitle,
   noteContent,
   isOpen,
   setOpen,
-  updateNote,
+  onSubmit,
+  isTitleCorrect,
+  setIsTitleCorrect,
+  isContentCorrect,
+  setIsContentCorrect,
 }) => {
   let textFieldTitle = noteTitle;
   let textFieldContent = noteContent;
-
-  const [isTitleCorrect, setIsTitleCorrect] = useState(true);
-  const [isContentCorrect, setIsContentCorrect] = useState(true);
-
-  const checkIsTitleCorrect = (title) =>
-    title.length > 0 && title.length < TITLE_MAX_LENGTH;
-  const checkIsContentCorrect = (content) =>
-    content.length > 0 && content.length < CONTENT_MAX_LENGTH;
 
   const handleTitleFieldChange = (event) => {
     textFieldTitle = event.target.value;
@@ -40,19 +44,20 @@ const ActiveNoteEditingDialog = ({
     setIsContentCorrect(checkIsContentCorrect(textFieldContent));
   };
   const handleSaveBtnClick = () => {
-    updateNote(textFieldTitle, textFieldContent);
+    onSubmit(textFieldTitle, textFieldContent);
     setOpen(false);
   };
+  const classes = styles();
 
   return (
     <Dialog open={isOpen} fullWidth="true" maxWidth="false">
-      <DialogTitle>Editing note</DialogTitle>
+      <DialogTitle>{dialogTitle}</DialogTitle>
       <DialogContent>
         <Grid direction="column">
           <TextField
             id="editTitleField"
             error={!isTitleCorrect}
-            className="DialogInputField"
+            style={styles.DialogInputField}
             label="title"
             defaultValue={textFieldTitle}
             onChange={handleTitleFieldChange}
@@ -64,7 +69,7 @@ const ActiveNoteEditingDialog = ({
           />
           <TextField
             error={!isContentCorrect}
-            className="DialogInputField"
+            className={classes.DialogInputField}
             label="content"
             defaultValue={textFieldContent}
             onChange={handleContentFieldChange}
@@ -90,20 +95,30 @@ const ActiveNoteEditingDialog = ({
   );
 };
 
-ActiveNoteEditingDialog.propTypes = {
+NoteProcessingDialog.propTypes = {
+  dialogTitle: PropTypes.string,
   noteTitle: PropTypes.string,
   noteContent: PropTypes.string,
   isOpen: PropTypes.bool,
   setOpen: PropTypes.func,
-  updateNote: PropTypes.func,
+  onSubmit: PropTypes.func,
+  isTitleCorrect: PropTypes.bool,
+  setIsTitleCorrect: PropTypes.func,
+  isContentCorrect: PropTypes.bool,
+  setIsContentCorrect: PropTypes.func,
 };
 
-ActiveNoteEditingDialog.defaultProps = {
+NoteProcessingDialog.defaultProps = {
+  dialogTitle: "",
   noteTitle: "",
   noteContent: "",
   isOpen: false,
   setOpen: () => {},
-  updateNote: () => {},
+  onSubmit: () => {},
+  isTitleCorrect: false,
+  setIsTitleCorrect: () => {},
+  isContentCorrect: false,
+  setIsContentCorrect: () => {},
 };
 
-export default ActiveNoteEditingDialog;
+export default NoteProcessingDialog;

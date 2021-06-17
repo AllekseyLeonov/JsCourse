@@ -1,4 +1,7 @@
-const NOTES = [
+export const TITLE_MAX_LENGTH = 35;
+export const CONTENT_MAX_LENGTH = 2000;
+
+const NotesArray = [
   {
     id: 0,
     title: "React",
@@ -8,6 +11,7 @@ const NOTES = [
       "React может использоваться для разработки одностраничных и мобильных приложений. Его цель — предоставить высокую скорость, простоту и масштабируемость." +
       " В качестве библиотеки для разработки пользовательских интерфейсов React часто используется с другими библиотеками, такими как MobX, Redux и GraphQL.",
     date: "03.05.2020",
+    userEmail: "",
   },
   {
     id: 1,
@@ -19,6 +23,7 @@ const NOTES = [
       " анимаций и переходов, отступов и эффектов глубины (света и тени). По идее графических дизайнеров Google," +
       " у приложений не должно быть острых углов, карточки должны переключаться между собой плавно и практически незаметно.",
     date: "02.05.2020",
+    userEmail: "",
   },
   {
     id: 2,
@@ -31,6 +36,7 @@ const NOTES = [
       " Эту функцию можно использовать где угодно, например, в обработчике событий." +
       " Она схожа с this.setState в классах, но не сливает новое и старое состояние вместе.",
     date: "02.05.2020",
+    userEmail: "",
   },
   {
     id: 3,
@@ -41,7 +47,8 @@ const NOTES = [
       " GitHub Pages are powered by Jekyll behind the scenes," +
       " so they’re a great way to host your Jekyll-powered website for free.",
     date: "02.05.2020",
+    userEmail: "",
   },
 ];
 
-export default NOTES;
+export default NotesArray;

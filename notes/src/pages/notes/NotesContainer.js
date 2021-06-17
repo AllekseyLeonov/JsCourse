@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import NotesListMenu from "./NotesListMenu";
-import ActiveNote from "./ActiveNote";
-import NOTES from "../../config/constants/NOTES";
-import "./styles.css";
+// eslint-disable-next-line import/no-unresolved
+import NOTES from "@constants/notesArray";
+// eslint-disable-next-line import/no-unresolved
+import { NOTES_ARRAY_KEY } from "@constants/localStorageKeys";
+import styles from "./styles";
+import NotesListMenuContainer from "./NotesListMenuContainer";
+import ActiveNoteContainer from "./ActiveNoteContainer";
 
-const NOTES_ARRAY_KEY = "notesArray";
-
-const NotesContainer = () => {
+const NotesContainer = ({ userEmail }) => {
   const loadedNotesAsString = localStorage.getItem(NOTES_ARRAY_KEY);
 
   const [notesArray, setNotesArray] = useState(
@@ -24,6 +27,7 @@ const NotesContainer = () => {
           title,
           content,
           date: note.date,
+          userEmail,
         };
         setSelectedNote(updatedNote);
         return updatedNote;
@@ -35,18 +39,40 @@ const NotesContainer = () => {
     localStorage.setItem(NOTES_ARRAY_KEY, JSON.stringify(updatedArray));
   };
 
+  const classes = styles();
+
   return (
-    <div className="NotesContainer">
+    <div className={classes.NotesContainer}>
       <Grid container direction="row" wrap="nowrap" justify="space-between">
-        <NotesListMenu
+        <NotesListMenuContainer
           notesArray={notesArray}
           selectedIndex={selectedNote ? selectedNote.id : null}
-          changeSelectedIndex={(index) => setSelectedNote(notesArray[index])}
+          changeSelectedIndex={(index) =>
+            setSelectedNote(notesArray.find((note) => note.id === index))
+          }
+          setNotesArray={setNotesArray}
         />
-        <ActiveNote item selectedItem={selectedNote} updateNote={updateNote} />
+        <ActiveNoteContainer
+          item
+          selectedItem={selectedNote}
+          updateNote={updateNote}
+          isOnSharedNotes={false}
+        />
       </Grid>
     </div>
   );
 };
 
-export default NotesContainer;
+const setStateToProps = (state) => ({
+  userEmail: state.auth.email,
+});
+
+NotesContainer.propTypes = {
+  userEmail: PropTypes.string,
+};
+
+NotesContainer.defaultProps = {
+  userEmail: "",
+};
+
+export default connect(setStateToProps)(NotesContainer);

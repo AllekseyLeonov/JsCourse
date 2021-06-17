@@ -1,38 +1,69 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 
-import "./styles.css";
-import ActiveNoteEditingDialog from "./ActiveNoteEditingDialog";
-import BodyContainer from "../../components/BodyContainer";
+// eslint-disable-next-line import/no-unresolved
+import BodyContainer from "@components/BodyContainer";
+import styles from "./styles";
+import NoteProcessingDialogContainer from "./NoteProcessingDialogContainer";
+import NoteSharingSnackbar from "./NoteSharingSnackbar";
 
-const ActiveNote = ({ selectedItem, updateNote }) => {
-  const [isDialogOpen, setDialogState] = useState(false);
+const ActiveNote = ({
+  selectedItem,
+  updateNote,
+  userEmail,
+  isOnSharedNotes,
+  isDialogOpen,
+  setDialogState,
+  isSnackbarOpen,
+  setSnackbarState,
+  handleShareBtnClick,
+}) => {
+  const classes = styles();
 
   return selectedItem ? (
     <BodyContainer>
       <Grid container direction="column" alignItems="center">
-        <Typography className="ActiveNoteTitle" variant="h3">
+        <Typography className={classes.ActiveNoteTitle} variant="h3">
           {selectedItem.title}
         </Typography>
-        <Typography className="ActiveNoteContent" variant="h5">
+        <Typography className={classes.ActiveNoteContent} variant="h5">
           {selectedItem.content}
         </Typography>
       </Grid>
-      <Button
-        onClick={() => setDialogState(!isDialogOpen)}
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
-      >
-        {" "}
-        Edit{" "}
-      </Button>
-      <ActiveNoteEditingDialog
+      {!isOnSharedNotes && selectedItem.userEmail !== "" ? (
+        <Grid direction="column">
+          <Button
+            onClick={() => setDialogState(!isDialogOpen)}
+            className={`${classes.ActiveNoteContent} ${classes.NotesButtons} ${classes.WithMargin}`}
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => handleShareBtnClick(userEmail, selectedItem)}
+            className={`${classes.ActiveNoteContent} ${classes.NotesButtons} ${classes.WithMargin}`}
+          >
+            Share
+          </Button>
+        </Grid>
+      ) : (
+        <div />
+      )}
+
+      <NoteSharingSnackbar
+        isSnackbarOpen={isSnackbarOpen}
+        userEmail={userEmail}
+        id={selectedItem.id}
+        setSnackbarState={setSnackbarState}
+      />
+      <NoteProcessingDialogContainer
+        dialogTitle="Editing note"
         noteTitle={selectedItem.title}
         noteContent={selectedItem.content}
         isOpen={isDialogOpen}
         setOpen={setDialogState}
-        updateNote={updateNote}
+        onSubmit={updateNote}
       />
     </BodyContainer>
   ) : (
@@ -48,13 +79,28 @@ ActiveNote.propTypes = {
     title: PropTypes.string,
     content: PropTypes.string,
     date: PropTypes.string,
+    userEmail: PropTypes.string,
   }),
   updateNote: PropTypes.func,
+  userEmail: PropTypes.string,
+  isOnSharedNotes: PropTypes.bool,
+  isDialogOpen: PropTypes.bool,
+  setDialogState: PropTypes.func,
+  isSnackbarOpen: PropTypes.bool,
+  setSnackbarState: PropTypes.func,
+  handleShareBtnClick: PropTypes.func,
 };
 
 ActiveNote.defaultProps = {
   selectedItem: null,
   updateNote: () => {},
+  userEmail: "",
+  isOnSharedNotes: false,
+  isDialogOpen: false,
+  setDialogState: () => {},
+  isSnackbarOpen: false,
+  setSnackbarState: () => {},
+  handleShareBtnClick: () => {},
 };
 
 export default ActiveNote;
